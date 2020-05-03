@@ -13,8 +13,8 @@ Access your current meter reading and daily usage from the Smart Meter Texas API
 ---
 ### Installation:
 1. Make sure your system meets the above prerequisites.
-2. Import the smart_meter_texas.json file into your Node-Red instance.
-3. If you are using Home Assistant, place the smartmetertexas.yaml file in your config/packages directory.  More information of using packages can be found [HERE](https://www.home-assistant.io/docs/configuration/packages/#create-a-packages-folder "HERE").
+2. Import the __smart_meter_texas.json__ file into your Node-Red instance.
+3. If you are using Home Assistant, place the __smartmetertexas.yaml__ file in your config/packages directory.  More information of using packages can be found [HERE](https://www.home-assistant.io/docs/configuration/packages/#create-a-packages-folder "HERE").
 4. Continue with configuration!
 ---
 ### Configuration:
