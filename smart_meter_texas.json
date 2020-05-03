@@ -1,15 +1,15 @@
 [
     {
-        "id": "a71cb105.fbd5c",
+        "id": "929f749.9a8e088",
         "type": "tab",
         "label": "Smart Meter Texas",
         "disabled": false,
         "info": ""
     },
     {
-        "id": "8ba919a9.1dad08",
+        "id": "771e4a20.c20514",
         "type": "inject",
-        "z": "a71cb105.fbd5c",
+        "z": "929f749.9a8e088",
         "name": "Retrieve Reading",
         "topic": "",
         "payload": "",
@@ -19,17 +19,17 @@
         "once": true,
         "onceDelay": "1.0",
         "x": 130,
-        "y": 580,
+        "y": 460,
         "wires": [
             [
-                "47ef9af0.7eaa14"
+                "b4a08a36.ed3d28"
             ]
         ]
     },
     {
-        "id": "6dd4fa83.54b3a4",
+        "id": "127b6780.428209",
         "type": "change",
-        "z": "a71cb105.fbd5c",
+        "z": "929f749.9a8e088",
         "name": "Apply HTTP Config",
         "rules": [
             {
@@ -60,17 +60,17 @@
         "to": "",
         "reg": false,
         "x": 550,
-        "y": 580,
+        "y": 460,
         "wires": [
             [
-                "117123ef.07f69c"
+                "249a6368.66488c"
             ]
         ]
     },
     {
-        "id": "117123ef.07f69c",
+        "id": "249a6368.66488c",
         "type": "https-node",
-        "z": "a71cb105.fbd5c",
+        "z": "929f749.9a8e088",
         "name": "Get Reading",
         "method": "POST",
         "ret": "obj",
@@ -78,18 +78,18 @@
         "authorized": false,
         "agent": true,
         "x": 730,
-        "y": 580,
+        "y": 460,
         "wires": [
             [
-                "4ae0fa6d.3f59a4",
-                "a26dace1.9a161"
+                "7d434497.c7749c",
+                "8d612168.e1659"
             ]
         ]
     },
     {
-        "id": "4ae0fa6d.3f59a4",
+        "id": "7d434497.c7749c",
         "type": "switch",
-        "z": "a71cb105.fbd5c",
+        "z": "929f749.9a8e088",
         "name": "Status Complete",
         "property": "payload.data.odrstatus",
         "propertyType": "msg",
@@ -104,17 +104,17 @@
         "repair": false,
         "outputs": 1,
         "x": 910,
-        "y": 560,
+        "y": 480,
         "wires": [
             [
-                "29b1a911.3159a6"
+                "7535014c.e577e"
             ]
         ]
     },
     {
-        "id": "9080d396.91cec",
+        "id": "b786c9dd.07fee8",
         "type": "inject",
-        "z": "a71cb105.fbd5c",
+        "z": "929f749.9a8e088",
         "name": "Authenticate",
         "topic": "",
         "payload": "",
@@ -127,14 +127,14 @@
         "y": 260,
         "wires": [
             [
-                "d171faf.e19f608"
+                "5c62a92d.f21fa8"
             ]
         ]
     },
     {
-        "id": "d171faf.e19f608",
+        "id": "5c62a92d.f21fa8",
         "type": "change",
-        "z": "a71cb105.fbd5c",
+        "z": "929f749.9a8e088",
         "name": "Apply HTTP Config",
         "rules": [
             {
@@ -161,14 +161,14 @@
         "y": 260,
         "wires": [
             [
-                "510e6199.e2b87"
+                "9427c6ff.f38008"
             ]
         ]
     },
     {
-        "id": "510e6199.e2b87",
+        "id": "9427c6ff.f38008",
         "type": "https-node",
-        "z": "a71cb105.fbd5c",
+        "z": "929f749.9a8e088",
         "name": "Log In",
         "method": "POST",
         "ret": "obj",
@@ -179,15 +179,15 @@
         "y": 260,
         "wires": [
             [
-                "4e2a861b.60c1f8",
-                "e32cbe25.0464c"
+                "39c9b506.c8939a",
+                "3e12925e.9ffe2e"
             ]
         ]
     },
     {
-        "id": "a0516ff8.f02e3",
+        "id": "84da5499.b9e438",
         "type": "change",
-        "z": "a71cb105.fbd5c",
+        "z": "929f749.9a8e088",
         "name": "",
         "rules": [
             {
@@ -204,17 +204,17 @@
         "to": "",
         "reg": false,
         "x": 780,
-        "y": 240,
+        "y": 280,
         "wires": [
             [
-                "220afef2.f06742"
+                "5283b16c.03e11"
             ]
         ]
     },
     {
-        "id": "e32cbe25.0464c",
+        "id": "3e12925e.9ffe2e",
         "type": "debug",
-        "z": "a71cb105.fbd5c",
+        "z": "929f749.9a8e088",
         "name": "Debug: Login",
         "active": false,
         "tosidebar": true,
@@ -223,29 +223,29 @@
         "complete": "payload",
         "targetType": "msg",
         "x": 620,
-        "y": 280,
+        "y": 240,
         "wires": []
     },
     {
-        "id": "4e2a861b.60c1f8",
+        "id": "39c9b506.c8939a",
         "type": "function",
-        "z": "a71cb105.fbd5c",
+        "z": "929f749.9a8e088",
         "name": "Add Bearer",
         "func": "msg.payload = \"bearer \" + msg.payload.token;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "x": 610,
-        "y": 240,
+        "y": 280,
         "wires": [
             [
-                "a0516ff8.f02e3"
+                "84da5499.b9e438"
             ]
         ]
     },
     {
-        "id": "4472b53.7e44c4c",
+        "id": "6af11ada.e98ba4",
         "type": "config",
-        "z": "a71cb105.fbd5c",
+        "z": "929f749.9a8e088",
         "name": "Configuration",
         "properties": [
             {
@@ -271,6 +271,12 @@
                 "pt": "flow",
                 "to": "",
                 "tot": "str"
+            },
+            {
+                "p": "pollminute",
+                "pt": "flow",
+                "to": "50",
+                "tot": "str"
             }
         ],
         "active": true,
@@ -279,9 +285,9 @@
         "wires": []
     },
     {
-        "id": "e1c50157.6f4d5",
+        "id": "e341e361.0f889",
         "type": "inject",
-        "z": "a71cb105.fbd5c",
+        "z": "929f749.9a8e088",
         "name": "Build JSON",
         "topic": "",
         "payload": "",
@@ -294,16 +300,16 @@
         "y": 140,
         "wires": [
             [
-                "750b8b21.9e9c24",
-                "d67f2885.8d51e8",
-                "e673e68a.27b558"
+                "fbbe0ce4.21a56",
+                "c84887a1.a68038",
+                "67b8b4a9.34938c"
             ]
         ]
     },
     {
-        "id": "750b8b21.9e9c24",
+        "id": "fbbe0ce4.21a56",
         "type": "function",
-        "z": "a71cb105.fbd5c",
+        "z": "929f749.9a8e088",
         "name": "Create Login JSON",
         "func": "var values = flow.get([\"username\", \"password\"]);\n\nmsg.payload = {\n  \"username\": values[0],\n  \"password\": values[1],\n  \"rememberMe\": \"true\"\n};\nreturn msg;",
         "outputs": 1,
@@ -312,14 +318,14 @@
         "y": 100,
         "wires": [
             [
-                "1a4e26e3.c36f59"
+                "efa7b6c7.3be5d8"
             ]
         ]
     },
     {
-        "id": "d67f2885.8d51e8",
+        "id": "c84887a1.a68038",
         "type": "function",
-        "z": "a71cb105.fbd5c",
+        "z": "929f749.9a8e088",
         "name": "Create Read Request JSON",
         "func": "var values = flow.get([\"esiid\", \"meternumber\"]);\n\nmsg.payload = {\n  \"ESIID\": values[0],\n  \"MeterNumber\": values[1]\n};\nreturn msg;",
         "outputs": 1,
@@ -328,14 +334,14 @@
         "y": 140,
         "wires": [
             [
-                "b8223835.7fc368"
+                "574028a3.921758"
             ]
         ]
     },
     {
-        "id": "e673e68a.27b558",
+        "id": "67b8b4a9.34938c",
         "type": "function",
-        "z": "a71cb105.fbd5c",
+        "z": "929f749.9a8e088",
         "name": "Create Read Result JSON",
         "func": "var values = flow.get([\"esiid\"]);\n\nmsg.payload = {\n  \"ESIID\": values[0]\n};\nreturn msg;",
         "outputs": 1,
@@ -344,14 +350,14 @@
         "y": 180,
         "wires": [
             [
-                "3738172b.7179a8"
+                "c9b46ae2.dd9d58"
             ]
         ]
     },
     {
-        "id": "47ef9af0.7eaa14",
+        "id": "b4a08a36.ed3d28",
         "type": "switch",
-        "z": "a71cb105.fbd5c",
+        "z": "929f749.9a8e088",
         "name": "Waiting for Response",
         "property": "readrequested",
         "propertyType": "flow",
@@ -366,17 +372,17 @@
         "repair": false,
         "outputs": 1,
         "x": 340,
-        "y": 580,
+        "y": 460,
         "wires": [
             [
-                "6dd4fa83.54b3a4"
+                "127b6780.428209"
             ]
         ]
     },
     {
-        "id": "29b1a911.3159a6",
+        "id": "7535014c.e577e",
         "type": "change",
-        "z": "a71cb105.fbd5c",
+        "z": "929f749.9a8e088",
         "name": "Not Waiting for Response",
         "rules": [
             {
@@ -393,31 +399,30 @@
         "to": "",
         "reg": false,
         "x": 1130,
-        "y": 560,
+        "y": 480,
         "wires": [
             [
-                "c4d55737.85ea08",
-                "8a08ae43.0af9f"
+                "cc29a088.fcd1a"
             ]
         ]
     },
     {
-        "id": "76c18e31.c8544",
+        "id": "fd789879.dd6f08",
         "type": "mqtt out",
-        "z": "a71cb105.fbd5c",
+        "z": "929f749.9a8e088",
         "name": "MQTT: Send Reading",
         "topic": "smt/reading",
         "qos": "",
         "retain": "true",
         "broker": "",
-        "x": 1560,
-        "y": 620,
+        "x": 1540,
+        "y": 500,
         "wires": []
     },
     {
-        "id": "c4d55737.85ea08",
+        "id": "cc29a088.fcd1a",
         "type": "change",
-        "z": "a71cb105.fbd5c",
+        "z": "929f749.9a8e088",
         "name": "Parse Reading",
         "rules": [
             {
@@ -434,57 +439,57 @@
         "to": "",
         "reg": false,
         "x": 1340,
-        "y": 580,
+        "y": 480,
         "wires": [
             [
-                "76c18e31.c8544",
-                "d989bc40.e338b"
+                "fd789879.dd6f08",
+                "589d30ac.c14f6"
             ]
         ]
     },
     {
-        "id": "d3d770c3.b40a8",
+        "id": "65a100aa.7aa08",
         "type": "inject",
-        "z": "a71cb105.fbd5c",
+        "z": "929f749.9a8e088",
         "name": "Read Meter",
         "topic": "",
         "payload": "",
         "payloadType": "date",
         "repeat": "1",
         "crontab": "",
-        "once": true,
-        "onceDelay": "60",
+        "once": false,
+        "onceDelay": "0.1",
         "x": 110,
-        "y": 460,
+        "y": 360,
         "wires": [
             [
-                "e6cbdbef.d41c88"
+                "9c3d0ef4.effb3"
             ]
         ]
     },
     {
-        "id": "b8f7bd60.322a7",
+        "id": "e9933680.4df1b8",
         "type": "https-node",
-        "z": "a71cb105.fbd5c",
+        "z": "929f749.9a8e088",
         "name": "Request Read",
         "method": "POST",
         "ret": "obj",
         "url": "https://smartmetertexas.com/api/ondemandread",
         "authorized": false,
         "agent": true,
-        "x": 1320,
-        "y": 460,
+        "x": 760,
+        "y": 360,
         "wires": [
             [
-                "452ca795.287168",
-                "fe400a5d.5a6248"
+                "22fb4178.fb9d9e",
+                "5c1270d5.37835"
             ]
         ]
     },
     {
-        "id": "1a4e26e3.c36f59",
+        "id": "efa7b6c7.3be5d8",
         "type": "change",
-        "z": "a71cb105.fbd5c",
+        "z": "929f749.9a8e088",
         "name": "",
         "rules": [
             {
@@ -507,9 +512,9 @@
         ]
     },
     {
-        "id": "b8223835.7fc368",
+        "id": "574028a3.921758",
         "type": "change",
-        "z": "a71cb105.fbd5c",
+        "z": "929f749.9a8e088",
         "name": "",
         "rules": [
             {
@@ -532,9 +537,9 @@
         ]
     },
     {
-        "id": "3738172b.7179a8",
+        "id": "c9b46ae2.dd9d58",
         "type": "change",
-        "z": "a71cb105.fbd5c",
+        "z": "929f749.9a8e088",
         "name": "",
         "rules": [
             {
@@ -557,9 +562,9 @@
         ]
     },
     {
-        "id": "452ca795.287168",
+        "id": "22fb4178.fb9d9e",
         "type": "switch",
-        "z": "a71cb105.fbd5c",
+        "z": "929f749.9a8e088",
         "name": "Request Good",
         "property": "payload.data.statusReason",
         "propertyType": "msg",
@@ -573,18 +578,18 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 1500,
-        "y": 480,
+        "x": 940,
+        "y": 380,
         "wires": [
             [
-                "97df23cb.ff75b"
+                "1bad1fe2.a8d68"
             ]
         ]
     },
     {
-        "id": "97df23cb.ff75b",
+        "id": "1bad1fe2.a8d68",
         "type": "change",
-        "z": "a71cb105.fbd5c",
+        "z": "929f749.9a8e088",
         "name": "Waiting for Response",
         "rules": [
             {
@@ -600,16 +605,16 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1700,
-        "y": 480,
+        "x": 1140,
+        "y": 380,
         "wires": [
             []
         ]
     },
     {
-        "id": "a26dace1.9a161",
+        "id": "8d612168.e1659",
         "type": "debug",
-        "z": "a71cb105.fbd5c",
+        "z": "929f749.9a8e088",
         "name": "Debug: Get Reading",
         "active": false,
         "tosidebar": true,
@@ -618,13 +623,13 @@
         "complete": "payload",
         "targetType": "msg",
         "x": 920,
-        "y": 600,
+        "y": 440,
         "wires": []
     },
     {
-        "id": "bf1b3d15.94365",
+        "id": "bb3a805c.32b0a",
         "type": "change",
-        "z": "a71cb105.fbd5c",
+        "z": "929f749.9a8e088",
         "name": "Apply HTTP Config",
         "rules": [
             {
@@ -654,406 +659,91 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1130,
-        "y": 460,
-        "wires": [
-            [
-                "b8f7bd60.322a7"
-            ]
-        ]
-    },
-    {
-        "id": "f6f249d7.12bb18",
-        "type": "inject",
-        "z": "a71cb105.fbd5c",
-        "name": "Get Last Read",
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "30",
-        "x": 120,
+        "x": 570,
         "y": 360,
         "wires": [
             [
-                "8410a59c.6fda78"
+                "e9933680.4df1b8"
             ]
         ]
     },
     {
-        "id": "8410a59c.6fda78",
-        "type": "change",
-        "z": "a71cb105.fbd5c",
-        "name": "Apply HTTP Config",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "resultjson",
-                "tot": "flow"
-            },
-            {
-                "t": "set",
-                "p": "headers.content-type",
-                "pt": "msg",
-                "to": "application/json",
-                "tot": "str"
-            },
-            {
-                "t": "set",
-                "p": "headers.authorization",
-                "pt": "msg",
-                "to": "token",
-                "tot": "flow"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 310,
-        "y": 360,
-        "wires": [
-            [
-                "a422e5ad.dc3e78"
-            ]
-        ]
-    },
-    {
-        "id": "a422e5ad.dc3e78",
-        "type": "https-node",
-        "z": "a71cb105.fbd5c",
-        "name": "Get Reading",
-        "method": "POST",
-        "ret": "obj",
-        "url": "https://smartmetertexas.com/api/usage/latestodrread",
-        "authorized": false,
-        "agent": true,
-        "x": 490,
-        "y": 360,
-        "wires": [
-            [
-                "23714807.62beb8",
-                "27870df8.73a7d2"
-            ]
-        ]
-    },
-    {
-        "id": "23714807.62beb8",
-        "type": "change",
-        "z": "a71cb105.fbd5c",
-        "name": "Parse Timestamp",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "payload.data.odrdate",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 670,
-        "y": 340,
-        "wires": [
-            [
-                "1f6d2d31.5e1943"
-            ]
-        ]
-    },
-    {
-        "id": "1f6d2d31.5e1943",
-        "type": "function",
-        "z": "a71cb105.fbd5c",
-        "name": "Calculate Last Read",
-        "func": "var str = msg.payload;\nvar ts = str.slice(11).split(\":\");\nvar hours = parseFloat(ts[0]) * 3600;\nvar minutes = parseFloat(ts[1]) * 60;\nvar seconds = parseFloat(ts[2]);\nmsg.payload = hours + minutes + seconds;\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 880,
-        "y": 340,
-        "wires": [
-            [
-                "e7b8a65.c167258"
-            ]
-        ]
-    },
-    {
-        "id": "e7b8a65.c167258",
-        "type": "change",
-        "z": "a71cb105.fbd5c",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "lastread",
-                "pt": "flow",
-                "to": "payload",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 1080,
-        "y": 340,
-        "wires": [
-            [
-                "4d89a14b.257fa"
-            ]
-        ]
-    },
-    {
-        "id": "e6cbdbef.d41c88",
-        "type": "function",
-        "z": "a71cb105.fbd5c",
-        "name": "Calculate Elapsed Time",
-        "func": "var values = flow.get([\"lastread\"]);\nvar timestamplast = parseFloat(values[0]);\n\nvar date = new Date();\nvar hours = (\"0\"+date.getHours()).substr(-2);\nvar minutes = (\"0\"+date.getMinutes()).substr(-2);\nvar seconds = (\"0\"+date.getSeconds()).substr(-2);\n\nhours = parseFloat(hours) * 3600;\nminutes = parseFloat(minutes) * 60;\nseconds = parseFloat(seconds);\n\nvar timestampcurrent = hours + minutes + seconds;\nvar elapsedtime = timestampcurrent - timestamplast;\n\nif (elapsedtime < 0){\n    elapsedtime = (86399 - timestamplast) + timestampcurrent;\n}\n\nmsg.payload = elapsedtime;\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 310,
-        "y": 460,
-        "wires": [
-            [
-                "c8f5301f.03d91"
-            ]
-        ]
-    },
-    {
-        "id": "4d89a14b.257fa",
+        "id": "5c1270d5.37835",
         "type": "debug",
-        "z": "a71cb105.fbd5c",
-        "name": "Debug: Last Read Time",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "x": 1290,
-        "y": 340,
-        "wires": []
-    },
-    {
-        "id": "8a08ae43.0af9f",
-        "type": "change",
-        "z": "a71cb105.fbd5c",
-        "name": "Parse Timestamp",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "payload.data.odrdate",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 1350,
-        "y": 540,
-        "wires": [
-            [
-                "f64c0663.a48908"
-            ]
-        ]
-    },
-    {
-        "id": "f64c0663.a48908",
-        "type": "function",
-        "z": "a71cb105.fbd5c",
-        "name": "Calculate Last Read",
-        "func": "var str = msg.payload;\nvar ts = str.slice(11).split(\":\");\nvar hours = parseFloat(ts[0]) * 3600;\nvar minutes = parseFloat(ts[1]) * 60;\nvar seconds = parseFloat(ts[2]);\nmsg.payload = hours + minutes + seconds;\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 1560,
-        "y": 540,
-        "wires": [
-            [
-                "31df329c.056a0e"
-            ]
-        ]
-    },
-    {
-        "id": "31df329c.056a0e",
-        "type": "change",
-        "z": "a71cb105.fbd5c",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "lastread",
-                "pt": "flow",
-                "to": "payload",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 1760,
-        "y": 540,
-        "wires": [
-            [
-                "47b9cc85.20c0c4"
-            ]
-        ]
-    },
-    {
-        "id": "c8f5301f.03d91",
-        "type": "switch",
-        "z": "a71cb105.fbd5c",
-        "name": "Check Elapsed Time",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "gt",
-                "v": "1800",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 540,
-        "y": 460,
-        "wires": [
-            [
-                "75afd319.95aa9c"
-            ]
-        ]
-    },
-    {
-        "id": "75afd319.95aa9c",
-        "type": "function",
-        "z": "a71cb105.fbd5c",
-        "name": "Update Last Read",
-        "func": "var date = new Date();\nvar hours = (\"0\"+date.getHours()).substr(-2);\nvar minutes = (\"0\"+date.getMinutes()).substr(-2);\nvar seconds = (\"0\"+date.getSeconds()).substr(-2);\n\nhours = parseFloat(hours) * 3600;\nminutes = parseFloat(minutes) * 60;\nseconds = parseFloat(seconds);\nmsg.payload = hours + minutes + seconds - 1200;\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 750,
-        "y": 460,
-        "wires": [
-            [
-                "a543e030.8d772"
-            ]
-        ]
-    },
-    {
-        "id": "a543e030.8d772",
-        "type": "change",
-        "z": "a71cb105.fbd5c",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "lastread",
-                "pt": "flow",
-                "to": "payload",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 940,
-        "y": 460,
-        "wires": [
-            [
-                "bf1b3d15.94365"
-            ]
-        ]
-    },
-    {
-        "id": "fe400a5d.5a6248",
-        "type": "debug",
-        "z": "a71cb105.fbd5c",
+        "z": "929f749.9a8e088",
         "name": "Debug: Read Meter",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
         "complete": "payload",
         "targetType": "msg",
-        "x": 1520,
-        "y": 440,
+        "x": 960,
+        "y": 340,
         "wires": []
     },
     {
-        "id": "220afef2.f06742",
+        "id": "5283b16c.03e11",
         "type": "debug",
-        "z": "a71cb105.fbd5c",
+        "z": "929f749.9a8e088",
         "name": "Debug: Auth Token",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
         "complete": "payload",
         "targetType": "msg",
         "x": 970,
-        "y": 240,
+        "y": 280,
         "wires": []
     },
     {
-        "id": "27870df8.73a7d2",
+        "id": "589d30ac.c14f6",
         "type": "debug",
-        "z": "a71cb105.fbd5c",
-        "name": "Debug: Get Reading",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "x": 680,
-        "y": 380,
-        "wires": []
-    },
-    {
-        "id": "47b9cc85.20c0c4",
-        "type": "debug",
-        "z": "a71cb105.fbd5c",
-        "name": "Debug: Last Read Time",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "x": 1970,
-        "y": 540,
-        "wires": []
-    },
-    {
-        "id": "d989bc40.e338b",
-        "type": "debug",
-        "z": "a71cb105.fbd5c",
+        "z": "929f749.9a8e088",
         "name": "Debug: Last Reading",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
         "complete": "payload",
         "targetType": "msg",
-        "x": 1560,
-        "y": 580,
+        "x": 1540,
+        "y": 460,
         "wires": []
+    },
+    {
+        "id": "bee6516a.32c51",
+        "type": "rbe",
+        "z": "929f749.9a8e088",
+        "name": "",
+        "func": "rbe",
+        "gap": "",
+        "start": "",
+        "inout": "out",
+        "property": "payload",
+        "x": 410,
+        "y": 360,
+        "wires": [
+            [
+                "bb3a805c.32b0a"
+            ]
+        ]
+    },
+    {
+        "id": "9c3d0ef4.effb3",
+        "type": "function",
+        "z": "929f749.9a8e088",
+        "name": "Check Time",
+        "func": "var date = new Date();\nvar minute = (\"0\"+date.getMinutes()).substr(-2);\nvar hour = (\"0\"+date.getHours()).substr(-2);\n\nvar values = flow.get([\"pollminute\"]);\nvar poll = values[0];\n\nif (minute == poll){\n    return { payload : hour };\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 270,
+        "y": 360,
+        "wires": [
+            [
+                "bee6516a.32c51"
+            ]
+        ]
     }
 ]

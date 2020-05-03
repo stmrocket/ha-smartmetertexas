@@ -1,6 +1,6 @@
 ## Node-Red Implementation of the Smart Meter Texas API
 
-Access your current meter reading and daily usage from the Smart Meter Texas API!  The Node-Red flow requests a meter read every 30 minutes and reports the results over MQTT.  There is also a package for Home Assistant providing a number of useful sensors for use in your home.
+Access your current meter reading and daily usage from the Smart Meter Texas API!  The Node-Red flow requests a meter read every hour and reports the results over MQTT.  There is also a package for Home Assistant providing a number of useful sensors for use in your home.
 
 ---
 ### Prerequisites:
@@ -18,7 +18,7 @@ Access your current meter reading and daily usage from the Smart Meter Texas API
 4. Continue with configuration!
 ---
 ### Configuration:
-1. Open the imported Node-Red flow and open the Configuration node.  You will need to fill in your Smart Meter Texas Username, Password, ESIID, and Meter Number.  Click 'Done' when you are finished.
+1. Open the imported Node-Red flow and open the Configuration node.  You will need to fill in your Smart Meter Texas Username, Password, ESIID, and Meter Number.  Optionally, you can change the minute when the meter will be polled every hour.  Click 'Done' when you are finished.
 2. Open the 'MQTT: Send Reading' node and configure your MQTT server information.
 3. When you are finished configuring the nodes, click the 'Deploy' button to start the flow with your new configuration.
 4. If you are using the Home Assistant package, set your electricity cost in the entity __input_number.smt_energy_cost__.
@@ -26,7 +26,7 @@ Access your current meter reading and daily usage from the Smart Meter Texas API
 ### Usage:
 The Node-Red flow will request a meter read at 30 minute intervals since the last successful read.  It will then request the results of the meter read every 30 seconds until they are available.  Both the current meter reading ais reported over MQTT with the topic smt/reading.  
 
-Note that the API limits each ESIID to two reads per hour (not read requests).  The limit is based on the time when the reading is successfully retrieved from the meter.  Increasing the frequency of reads will result in an error until an hour elapses from the oldest request.
+Note that the API limits each ESIID to two reads per hour and 24 reads per day.  The limit is based on the time when the reading is successfully retrieved from the meter.  Increasing the frequency of reads will result in an error until the hour or day resets (depending on the error).
 
 ---
 __Disclaimer:__ This information is not provided by, nor endorsed by Smart Meter Texas.  As this API is unpublished, it could break at any time.  
