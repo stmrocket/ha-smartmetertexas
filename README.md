@@ -21,6 +21,7 @@ Access your current meter reading and daily usage from the Smart Meter Texas API
 1. Open the imported Node-Red flow and open the Configuration node.  You will need to fill in your Smart Meter Texas Username, Password, ESIID, and Meter Number.  Click 'Done' when you are finished.
 2. Open the 'MQTT: Send Reading' node and configure your MQTT server information.
 3. When you are finished configuring the nodes, click the 'Deploy' button to start the flow with your new configuration.
+4. If you are using the Home Assistant package, set your electricity cost in the entity __input_number.smt_energy_cost__.
 ---
 ### Usage:
 The Node-Red flow will request a meter read at 30 minute intervals since the last successful read.  It will then request the results of the meter read every 30 seconds until they are available.  Both the current meter reading ais reported over MQTT with the topic smt/reading.  
