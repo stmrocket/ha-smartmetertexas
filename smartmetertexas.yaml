@@ -1,0 +1,91 @@
+sensor:
+
+  - platform: mqtt
+    name: SMT Current Reading
+    state_topic: "smt/reading"
+    unit_of_measurement: "kWh"
+    
+  - platform: template
+    sensors:
+
+      smt_electricity_cost_this_hour:
+        friendly_name: Electricity Cost This Hour
+        unit_of_measurement: '$'
+        value_template: "{{ (states('sensor.smt_energy_hourly') | float * states('input_number.smt_energy_cost') | float) | round (2) }}"
+
+      smt_electricity_cost_last_hour:
+        friendly_name: Electricity Cost Last Hour
+        unit_of_measurement: '$'
+        value_template: "{{ (state_attr('sensor.smt_energy_hourly','last_period') | float * states('input_number.smt_energy_cost') | float) | round (2) }}"
+
+      smt_electricity_cost_today:
+        friendly_name: Electricity Cost Today
+        unit_of_measurement: '$'
+        value_template: "{{ (states('sensor.smt_energy_daily') | float * states('input_number.smt_energy_cost') | float) | round (2) }}"
+
+      smt_electricity_cost_yesterday:
+        friendly_name: Electricity Cost Yesterday
+        unit_of_measurement: '$'
+        value_template: "{{ (state_attr('sensor.smt_energy_daily','last_period') | float * states('input_number.smt_energy_cost') | float) | round (2) }}"
+
+      smt_electricity_cost_this_week:
+        friendly_name: Electricity Cost This Week
+        unit_of_measurement: '$'
+        value_template: "{{ (states('sensor.smt_energy_weekly') | float * states('input_number.smt_energy_cost') | float) | round (2) }}"
+
+      smt_electricity_cost_last_week:
+        friendly_name: Electricity Cost Last Week
+        unit_of_measurement: '$'
+        value_template: "{{ (state_attr('sensor.smt_energy_weekly','last_period') | float * states('input_number.smt_energy_cost') | float) | round (2) }}"
+
+      smt_electricity_cost_this_month:
+        friendly_name: Electricity Cost This Month
+        unit_of_measurement: '$'
+        value_template: "{{ (states('sensor.smt_energy_monthly') | float * states('input_number.smt_energy_cost') | float) | round (2) }}"
+
+      smt_electricity_cost_last_month:
+        friendly_name: Electricity Cost Last Month
+        unit_of_measurement: '$'
+        value_template: "{{ (state_attr('sensor.smt_energy_monthly','last_period') | float * states('input_number.smt_energy_cost') | float) | round (2) }}"
+
+      smt_electricity_cost_this_year:
+        friendly_name: Electricity Cost This Year
+        unit_of_measurement: '$'
+        value_template: "{{ (states('sensor.smt_energy_yearly') | float * states('input_number.smt_energy_cost') | float) | round (2) }}"
+
+      smt_electricity_cost_last_year:
+        friendly_name: Electricity Cost Last Year
+        unit_of_measurement: '$'
+        value_template: "{{ (state_attr('sensor.smt_energy_yearly','last_period') | float * states('input_number.smt_energy_cost') | float) | round (2) }}"
+    
+utility_meter:
+
+  smt_energy_hourly:
+    source: sensor.smt_current_reading
+    cycle: hourly
+
+  smt_energy_daily:
+    source: sensor.smt_current_reading
+    cycle: daily
+    
+  smt_energy_weekly:
+    source: sensor.smt_current_reading
+    cycle: weekly
+
+  smt_energy_monthly:
+    source: sensor.smt_current_reading
+    cycle: monthly
+
+  smt_energy_yearly:
+    source: sensor.smt_current_reading
+    cycle: yearly    
+    
+input_number:
+
+  smt_energy_cost:
+    name: Electricity Cost
+    mode: box
+    min: 0
+    max: 2.50
+    step: .001
+    unit_of_measurement: "$/kWh"
