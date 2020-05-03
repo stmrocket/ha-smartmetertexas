@@ -4,12 +4,12 @@ Access your current meter reading and daily usage from the Smart Meter Texas API
 
 ---
 ### Prerequisites:
-- An electric meter enrolled with Smart Meter Texas
-- Your Smart Meter Texas Username, Password, ESIID, and Meter Number
-- An MQTT Server
-- Node-Red and the following additional nodes:
- - node-red-contrib-config
- - node-red-contrib-https
+* An electric meter enrolled with Smart Meter Texas
+* Your Smart Meter Texas Username, Password, ESIID, and Meter Number
+* An MQTT Server
+* Node-Red and the following additional nodes:
+   * node-red-contrib-config
+   * node-red-contrib-https
 ---
 ### Installation:
 1. Make sure your system meets the above prerequisites.
@@ -28,4 +28,4 @@ The Node-Red flow will request a meter read at 30 minute intervals since the las
 Note that the API limits each ESIID to two reads per hour (not read requests).  The limit is based on the time when the reading is successfully retrieved from the meter.  Increasing the frequency of reads will result in an error until an hour elapses from the oldest request.
 
 ---
-** Disclaimer: ** This information is not provided by, nor endorsed by Smart Meter Texas.  As this API is unpublished, it could break at any time.  
+__Disclaimer:__ This information is not provided by, nor endorsed by Smart Meter Texas.  As this API is unpublished, it could break at any time.  
