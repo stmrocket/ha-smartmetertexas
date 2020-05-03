@@ -1,0 +1,1059 @@
+[
+    {
+        "id": "a71cb105.fbd5c",
+        "type": "tab",
+        "label": "Smart Meter Texas",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "8ba919a9.1dad08",
+        "type": "inject",
+        "z": "a71cb105.fbd5c",
+        "name": "Retrieve Reading",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "30",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1.0",
+        "x": 130,
+        "y": 580,
+        "wires": [
+            [
+                "47ef9af0.7eaa14"
+            ]
+        ]
+    },
+    {
+        "id": "6dd4fa83.54b3a4",
+        "type": "change",
+        "z": "a71cb105.fbd5c",
+        "name": "Apply HTTP Config",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "resultjson",
+                "tot": "flow"
+            },
+            {
+                "t": "set",
+                "p": "headers.content-type",
+                "pt": "msg",
+                "to": "application/json",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "headers.authorization",
+                "pt": "msg",
+                "to": "token",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 550,
+        "y": 580,
+        "wires": [
+            [
+                "117123ef.07f69c"
+            ]
+        ]
+    },
+    {
+        "id": "117123ef.07f69c",
+        "type": "https-node",
+        "z": "a71cb105.fbd5c",
+        "name": "Get Reading",
+        "method": "POST",
+        "ret": "obj",
+        "url": "https://smartmetertexas.com/api/usage/latestodrread",
+        "authorized": false,
+        "agent": true,
+        "x": 730,
+        "y": 580,
+        "wires": [
+            [
+                "4ae0fa6d.3f59a4",
+                "a26dace1.9a161"
+            ]
+        ]
+    },
+    {
+        "id": "4ae0fa6d.3f59a4",
+        "type": "switch",
+        "z": "a71cb105.fbd5c",
+        "name": "Status Complete",
+        "property": "payload.data.odrstatus",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "COMPLETED",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 910,
+        "y": 560,
+        "wires": [
+            [
+                "29b1a911.3159a6"
+            ]
+        ]
+    },
+    {
+        "id": "9080d396.91cec",
+        "type": "inject",
+        "z": "a71cb105.fbd5c",
+        "name": "Authenticate",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "1800",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.5",
+        "x": 120,
+        "y": 260,
+        "wires": [
+            [
+                "d171faf.e19f608"
+            ]
+        ]
+    },
+    {
+        "id": "d171faf.e19f608",
+        "type": "change",
+        "z": "a71cb105.fbd5c",
+        "name": "Apply HTTP Config",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "authjson",
+                "tot": "flow"
+            },
+            {
+                "t": "set",
+                "p": "headers.content-type",
+                "pt": "msg",
+                "to": "application/json",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 310,
+        "y": 260,
+        "wires": [
+            [
+                "510e6199.e2b87"
+            ]
+        ]
+    },
+    {
+        "id": "510e6199.e2b87",
+        "type": "https-node",
+        "z": "a71cb105.fbd5c",
+        "name": "Log In",
+        "method": "POST",
+        "ret": "obj",
+        "url": "https://smartmetertexas.com/api/user/authenticate",
+        "authorized": false,
+        "agent": true,
+        "x": 470,
+        "y": 260,
+        "wires": [
+            [
+                "4e2a861b.60c1f8",
+                "e32cbe25.0464c"
+            ]
+        ]
+    },
+    {
+        "id": "a0516ff8.f02e3",
+        "type": "change",
+        "z": "a71cb105.fbd5c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "token",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 780,
+        "y": 240,
+        "wires": [
+            [
+                "220afef2.f06742"
+            ]
+        ]
+    },
+    {
+        "id": "e32cbe25.0464c",
+        "type": "debug",
+        "z": "a71cb105.fbd5c",
+        "name": "Debug: Login",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 620,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "4e2a861b.60c1f8",
+        "type": "function",
+        "z": "a71cb105.fbd5c",
+        "name": "Add Bearer",
+        "func": "msg.payload = \"bearer \" + msg.payload.token;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 610,
+        "y": 240,
+        "wires": [
+            [
+                "a0516ff8.f02e3"
+            ]
+        ]
+    },
+    {
+        "id": "4472b53.7e44c4c",
+        "type": "config",
+        "z": "a71cb105.fbd5c",
+        "name": "Configuration",
+        "properties": [
+            {
+                "p": "username",
+                "pt": "flow",
+                "to": "",
+                "tot": "str"
+            },
+            {
+                "p": "password",
+                "pt": "flow",
+                "to": "",
+                "tot": "str"
+            },
+            {
+                "p": "esiid",
+                "pt": "flow",
+                "to": "",
+                "tot": "str"
+            },
+            {
+                "p": "meternumber",
+                "pt": "flow",
+                "to": "",
+                "tot": "str"
+            }
+        ],
+        "active": true,
+        "x": 120,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "e1c50157.6f4d5",
+        "type": "inject",
+        "z": "a71cb105.fbd5c",
+        "name": "Build JSON",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.1",
+        "x": 110,
+        "y": 140,
+        "wires": [
+            [
+                "750b8b21.9e9c24",
+                "d67f2885.8d51e8",
+                "e673e68a.27b558"
+            ]
+        ]
+    },
+    {
+        "id": "750b8b21.9e9c24",
+        "type": "function",
+        "z": "a71cb105.fbd5c",
+        "name": "Create Login JSON",
+        "func": "var values = flow.get([\"username\", \"password\"]);\n\nmsg.payload = {\n  \"username\": values[0],\n  \"password\": values[1],\n  \"rememberMe\": \"true\"\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 310,
+        "y": 100,
+        "wires": [
+            [
+                "1a4e26e3.c36f59"
+            ]
+        ]
+    },
+    {
+        "id": "d67f2885.8d51e8",
+        "type": "function",
+        "z": "a71cb105.fbd5c",
+        "name": "Create Read Request JSON",
+        "func": "var values = flow.get([\"esiid\", \"meternumber\"]);\n\nmsg.payload = {\n  \"ESIID\": values[0],\n  \"MeterNumber\": values[1]\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 340,
+        "y": 140,
+        "wires": [
+            [
+                "b8223835.7fc368"
+            ]
+        ]
+    },
+    {
+        "id": "e673e68a.27b558",
+        "type": "function",
+        "z": "a71cb105.fbd5c",
+        "name": "Create Read Result JSON",
+        "func": "var values = flow.get([\"esiid\"]);\n\nmsg.payload = {\n  \"ESIID\": values[0]\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 340,
+        "y": 180,
+        "wires": [
+            [
+                "3738172b.7179a8"
+            ]
+        ]
+    },
+    {
+        "id": "47ef9af0.7eaa14",
+        "type": "switch",
+        "z": "a71cb105.fbd5c",
+        "name": "Waiting for Response",
+        "property": "readrequested",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 340,
+        "y": 580,
+        "wires": [
+            [
+                "6dd4fa83.54b3a4"
+            ]
+        ]
+    },
+    {
+        "id": "29b1a911.3159a6",
+        "type": "change",
+        "z": "a71cb105.fbd5c",
+        "name": "Not Waiting for Response",
+        "rules": [
+            {
+                "t": "set",
+                "p": "readrequested",
+                "pt": "flow",
+                "to": "0",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1130,
+        "y": 560,
+        "wires": [
+            [
+                "c4d55737.85ea08",
+                "8a08ae43.0af9f"
+            ]
+        ]
+    },
+    {
+        "id": "76c18e31.c8544",
+        "type": "mqtt out",
+        "z": "a71cb105.fbd5c",
+        "name": "MQTT: Send Reading",
+        "topic": "smt/reading",
+        "qos": "",
+        "retain": "true",
+        "broker": "",
+        "x": 1560,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "c4d55737.85ea08",
+        "type": "change",
+        "z": "a71cb105.fbd5c",
+        "name": "Parse Reading",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.data.odrread",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1340,
+        "y": 580,
+        "wires": [
+            [
+                "76c18e31.c8544",
+                "d989bc40.e338b"
+            ]
+        ]
+    },
+    {
+        "id": "d3d770c3.b40a8",
+        "type": "inject",
+        "z": "a71cb105.fbd5c",
+        "name": "Read Meter",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "60",
+        "x": 110,
+        "y": 460,
+        "wires": [
+            [
+                "e6cbdbef.d41c88"
+            ]
+        ]
+    },
+    {
+        "id": "b8f7bd60.322a7",
+        "type": "https-node",
+        "z": "a71cb105.fbd5c",
+        "name": "Request Read",
+        "method": "POST",
+        "ret": "obj",
+        "url": "https://smartmetertexas.com/api/ondemandread",
+        "authorized": false,
+        "agent": true,
+        "x": 1320,
+        "y": 460,
+        "wires": [
+            [
+                "452ca795.287168",
+                "fe400a5d.5a6248"
+            ]
+        ]
+    },
+    {
+        "id": "1a4e26e3.c36f59",
+        "type": "change",
+        "z": "a71cb105.fbd5c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "authjson",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 570,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b8223835.7fc368",
+        "type": "change",
+        "z": "a71cb105.fbd5c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "readjson",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 570,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3738172b.7179a8",
+        "type": "change",
+        "z": "a71cb105.fbd5c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "resultjson",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 570,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "452ca795.287168",
+        "type": "switch",
+        "z": "a71cb105.fbd5c",
+        "name": "Request Good",
+        "property": "payload.data.statusReason",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "Request submitted successfully for further processing",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1500,
+        "y": 480,
+        "wires": [
+            [
+                "97df23cb.ff75b"
+            ]
+        ]
+    },
+    {
+        "id": "97df23cb.ff75b",
+        "type": "change",
+        "z": "a71cb105.fbd5c",
+        "name": "Waiting for Response",
+        "rules": [
+            {
+                "t": "set",
+                "p": "readrequested",
+                "pt": "flow",
+                "to": "1",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1700,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a26dace1.9a161",
+        "type": "debug",
+        "z": "a71cb105.fbd5c",
+        "name": "Debug: Get Reading",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 920,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "bf1b3d15.94365",
+        "type": "change",
+        "z": "a71cb105.fbd5c",
+        "name": "Apply HTTP Config",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "readjson",
+                "tot": "flow"
+            },
+            {
+                "t": "set",
+                "p": "headers.content-type",
+                "pt": "msg",
+                "to": "application/json",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "headers.authorization",
+                "pt": "msg",
+                "to": "token",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1130,
+        "y": 460,
+        "wires": [
+            [
+                "b8f7bd60.322a7"
+            ]
+        ]
+    },
+    {
+        "id": "f6f249d7.12bb18",
+        "type": "inject",
+        "z": "a71cb105.fbd5c",
+        "name": "Get Last Read",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "30",
+        "x": 120,
+        "y": 360,
+        "wires": [
+            [
+                "8410a59c.6fda78"
+            ]
+        ]
+    },
+    {
+        "id": "8410a59c.6fda78",
+        "type": "change",
+        "z": "a71cb105.fbd5c",
+        "name": "Apply HTTP Config",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "resultjson",
+                "tot": "flow"
+            },
+            {
+                "t": "set",
+                "p": "headers.content-type",
+                "pt": "msg",
+                "to": "application/json",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "headers.authorization",
+                "pt": "msg",
+                "to": "token",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 310,
+        "y": 360,
+        "wires": [
+            [
+                "a422e5ad.dc3e78"
+            ]
+        ]
+    },
+    {
+        "id": "a422e5ad.dc3e78",
+        "type": "https-node",
+        "z": "a71cb105.fbd5c",
+        "name": "Get Reading",
+        "method": "POST",
+        "ret": "obj",
+        "url": "https://smartmetertexas.com/api/usage/latestodrread",
+        "authorized": false,
+        "agent": true,
+        "x": 490,
+        "y": 360,
+        "wires": [
+            [
+                "23714807.62beb8",
+                "27870df8.73a7d2"
+            ]
+        ]
+    },
+    {
+        "id": "23714807.62beb8",
+        "type": "change",
+        "z": "a71cb105.fbd5c",
+        "name": "Parse Timestamp",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.data.odrdate",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 670,
+        "y": 340,
+        "wires": [
+            [
+                "1f6d2d31.5e1943"
+            ]
+        ]
+    },
+    {
+        "id": "1f6d2d31.5e1943",
+        "type": "function",
+        "z": "a71cb105.fbd5c",
+        "name": "Calculate Last Read",
+        "func": "var str = msg.payload;\nvar ts = str.slice(11).split(\":\");\nvar hours = parseFloat(ts[0]) * 3600;\nvar minutes = parseFloat(ts[1]) * 60;\nvar seconds = parseFloat(ts[2]);\nmsg.payload = hours + minutes + seconds;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 880,
+        "y": 340,
+        "wires": [
+            [
+                "e7b8a65.c167258"
+            ]
+        ]
+    },
+    {
+        "id": "e7b8a65.c167258",
+        "type": "change",
+        "z": "a71cb105.fbd5c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "lastread",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1080,
+        "y": 340,
+        "wires": [
+            [
+                "4d89a14b.257fa"
+            ]
+        ]
+    },
+    {
+        "id": "e6cbdbef.d41c88",
+        "type": "function",
+        "z": "a71cb105.fbd5c",
+        "name": "Calculate Elapsed Time",
+        "func": "var values = flow.get([\"lastread\"]);\nvar timestamplast = parseFloat(values[0]);\n\nvar date = new Date();\nvar hours = (\"0\"+date.getHours()).substr(-2);\nvar minutes = (\"0\"+date.getMinutes()).substr(-2);\nvar seconds = (\"0\"+date.getSeconds()).substr(-2);\n\nhours = parseFloat(hours) * 3600;\nminutes = parseFloat(minutes) * 60;\nseconds = parseFloat(seconds);\n\nvar timestampcurrent = hours + minutes + seconds;\nvar elapsedtime = timestampcurrent - timestamplast;\n\nif (elapsedtime < 0){\n    elapsedtime = (86399 - timestamplast) + timestampcurrent;\n}\n\nmsg.payload = elapsedtime;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 310,
+        "y": 460,
+        "wires": [
+            [
+                "c8f5301f.03d91"
+            ]
+        ]
+    },
+    {
+        "id": "4d89a14b.257fa",
+        "type": "debug",
+        "z": "a71cb105.fbd5c",
+        "name": "Debug: Last Read Time",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 1290,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "8a08ae43.0af9f",
+        "type": "change",
+        "z": "a71cb105.fbd5c",
+        "name": "Parse Timestamp",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.data.odrdate",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1350,
+        "y": 540,
+        "wires": [
+            [
+                "f64c0663.a48908"
+            ]
+        ]
+    },
+    {
+        "id": "f64c0663.a48908",
+        "type": "function",
+        "z": "a71cb105.fbd5c",
+        "name": "Calculate Last Read",
+        "func": "var str = msg.payload;\nvar ts = str.slice(11).split(\":\");\nvar hours = parseFloat(ts[0]) * 3600;\nvar minutes = parseFloat(ts[1]) * 60;\nvar seconds = parseFloat(ts[2]);\nmsg.payload = hours + minutes + seconds;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1560,
+        "y": 540,
+        "wires": [
+            [
+                "31df329c.056a0e"
+            ]
+        ]
+    },
+    {
+        "id": "31df329c.056a0e",
+        "type": "change",
+        "z": "a71cb105.fbd5c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "lastread",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1760,
+        "y": 540,
+        "wires": [
+            [
+                "47b9cc85.20c0c4"
+            ]
+        ]
+    },
+    {
+        "id": "c8f5301f.03d91",
+        "type": "switch",
+        "z": "a71cb105.fbd5c",
+        "name": "Check Elapsed Time",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gt",
+                "v": "1800",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 540,
+        "y": 460,
+        "wires": [
+            [
+                "75afd319.95aa9c"
+            ]
+        ]
+    },
+    {
+        "id": "75afd319.95aa9c",
+        "type": "function",
+        "z": "a71cb105.fbd5c",
+        "name": "Update Last Read",
+        "func": "var date = new Date();\nvar hours = (\"0\"+date.getHours()).substr(-2);\nvar minutes = (\"0\"+date.getMinutes()).substr(-2);\nvar seconds = (\"0\"+date.getSeconds()).substr(-2);\n\nhours = parseFloat(hours) * 3600;\nminutes = parseFloat(minutes) * 60;\nseconds = parseFloat(seconds);\nmsg.payload = hours + minutes + seconds - 1200;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 750,
+        "y": 460,
+        "wires": [
+            [
+                "a543e030.8d772"
+            ]
+        ]
+    },
+    {
+        "id": "a543e030.8d772",
+        "type": "change",
+        "z": "a71cb105.fbd5c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "lastread",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 940,
+        "y": 460,
+        "wires": [
+            [
+                "bf1b3d15.94365"
+            ]
+        ]
+    },
+    {
+        "id": "fe400a5d.5a6248",
+        "type": "debug",
+        "z": "a71cb105.fbd5c",
+        "name": "Debug: Read Meter",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 1520,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "220afef2.f06742",
+        "type": "debug",
+        "z": "a71cb105.fbd5c",
+        "name": "Debug: Auth Token",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 970,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "27870df8.73a7d2",
+        "type": "debug",
+        "z": "a71cb105.fbd5c",
+        "name": "Debug: Get Reading",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 680,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "47b9cc85.20c0c4",
+        "type": "debug",
+        "z": "a71cb105.fbd5c",
+        "name": "Debug: Last Read Time",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 1970,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "d989bc40.e338b",
+        "type": "debug",
+        "z": "a71cb105.fbd5c",
+        "name": "Debug: Last Reading",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 1560,
+        "y": 580,
+        "wires": []
+    }
+]
