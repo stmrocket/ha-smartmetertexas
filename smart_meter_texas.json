@@ -1,15 +1,15 @@
 [
     {
-        "id": "929f749.9a8e088",
+        "id": "16a48968.aea6b7",
         "type": "tab",
         "label": "Smart Meter Texas",
         "disabled": false,
         "info": ""
     },
     {
-        "id": "771e4a20.c20514",
+        "id": "9e0cdc70.c3581",
         "type": "inject",
-        "z": "929f749.9a8e088",
+        "z": "16a48968.aea6b7",
         "name": "Retrieve Reading",
         "topic": "",
         "payload": "",
@@ -18,18 +18,18 @@
         "crontab": "",
         "once": true,
         "onceDelay": "1.0",
-        "x": 130,
+        "x": 150,
         "y": 460,
         "wires": [
             [
-                "b4a08a36.ed3d28"
+                "a6824cfe.8985b"
             ]
         ]
     },
     {
-        "id": "127b6780.428209",
+        "id": "94a78438.8a8328",
         "type": "change",
-        "z": "929f749.9a8e088",
+        "z": "16a48968.aea6b7",
         "name": "Apply HTTP Config",
         "rules": [
             {
@@ -59,37 +59,37 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 550,
+        "x": 570,
         "y": 460,
         "wires": [
             [
-                "249a6368.66488c"
+                "5a26c4a1.c10c6c"
             ]
         ]
     },
     {
-        "id": "249a6368.66488c",
+        "id": "5a26c4a1.c10c6c",
         "type": "https-node",
-        "z": "929f749.9a8e088",
+        "z": "16a48968.aea6b7",
         "name": "Get Reading",
         "method": "POST",
         "ret": "obj",
         "url": "https://smartmetertexas.com/api/usage/latestodrread",
         "authorized": false,
         "agent": true,
-        "x": 730,
+        "x": 750,
         "y": 460,
         "wires": [
             [
-                "7d434497.c7749c",
-                "8d612168.e1659"
+                "e23f0059.9a102",
+                "ad2e1fec.cc353"
             ]
         ]
     },
     {
-        "id": "7d434497.c7749c",
+        "id": "e23f0059.9a102",
         "type": "switch",
-        "z": "929f749.9a8e088",
+        "z": "16a48968.aea6b7",
         "name": "Status Complete",
         "property": "payload.data.odrstatus",
         "propertyType": "msg",
@@ -103,38 +103,38 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 910,
+        "x": 930,
         "y": 480,
         "wires": [
             [
-                "7535014c.e577e"
+                "10f6f3a3.0bfc4c"
             ]
         ]
     },
     {
-        "id": "b786c9dd.07fee8",
+        "id": "58c775c2.65129c",
         "type": "inject",
-        "z": "929f749.9a8e088",
+        "z": "16a48968.aea6b7",
         "name": "Authenticate",
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "repeat": "1800",
+        "repeat": "1",
         "crontab": "",
-        "once": true,
+        "once": false,
         "onceDelay": "0.5",
-        "x": 120,
+        "x": 140,
         "y": 260,
         "wires": [
             [
-                "5c62a92d.f21fa8"
+                "23d2a357.e5208c"
             ]
         ]
     },
     {
-        "id": "5c62a92d.f21fa8",
+        "id": "8eea7068.95c6c",
         "type": "change",
-        "z": "929f749.9a8e088",
+        "z": "16a48968.aea6b7",
         "name": "Apply HTTP Config",
         "rules": [
             {
@@ -157,37 +157,37 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 310,
+        "x": 610,
         "y": 260,
         "wires": [
             [
-                "9427c6ff.f38008"
+                "c7deb224.1fdac"
             ]
         ]
     },
     {
-        "id": "9427c6ff.f38008",
+        "id": "c7deb224.1fdac",
         "type": "https-node",
-        "z": "929f749.9a8e088",
+        "z": "16a48968.aea6b7",
         "name": "Log In",
         "method": "POST",
         "ret": "obj",
         "url": "https://smartmetertexas.com/api/user/authenticate",
         "authorized": false,
         "agent": true,
-        "x": 470,
+        "x": 770,
         "y": 260,
         "wires": [
             [
-                "39c9b506.c8939a",
-                "3e12925e.9ffe2e"
+                "f4a4c08f.8fee1",
+                "b26cdce9.bd958"
             ]
         ]
     },
     {
-        "id": "84da5499.b9e438",
+        "id": "10a0c91.7ccad37",
         "type": "change",
-        "z": "929f749.9a8e088",
+        "z": "16a48968.aea6b7",
         "name": "",
         "rules": [
             {
@@ -203,18 +203,18 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 780,
+        "x": 1080,
         "y": 280,
         "wires": [
             [
-                "5283b16c.03e11"
+                "6de863e9.3ff2fc"
             ]
         ]
     },
     {
-        "id": "3e12925e.9ffe2e",
+        "id": "b26cdce9.bd958",
         "type": "debug",
-        "z": "929f749.9a8e088",
+        "z": "16a48968.aea6b7",
         "name": "Debug: Login",
         "active": false,
         "tosidebar": true,
@@ -222,56 +222,32 @@
         "tostatus": false,
         "complete": "payload",
         "targetType": "msg",
-        "x": 620,
+        "x": 920,
         "y": 240,
         "wires": []
     },
     {
-        "id": "39c9b506.c8939a",
+        "id": "f4a4c08f.8fee1",
         "type": "function",
-        "z": "929f749.9a8e088",
+        "z": "16a48968.aea6b7",
         "name": "Add Bearer",
         "func": "msg.payload = \"bearer \" + msg.payload.token;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 610,
+        "x": 910,
         "y": 280,
         "wires": [
             [
-                "84da5499.b9e438"
+                "10a0c91.7ccad37"
             ]
         ]
     },
     {
-        "id": "6af11ada.e98ba4",
+        "id": "55ee088.28608f8",
         "type": "config",
-        "z": "929f749.9a8e088",
+        "z": "16a48968.aea6b7",
         "name": "Configuration",
         "properties": [
-            {
-                "p": "username",
-                "pt": "flow",
-                "to": "",
-                "tot": "str"
-            },
-            {
-                "p": "password",
-                "pt": "flow",
-                "to": "",
-                "tot": "str"
-            },
-            {
-                "p": "esiid",
-                "pt": "flow",
-                "to": "",
-                "tot": "str"
-            },
-            {
-                "p": "meternumber",
-                "pt": "flow",
-                "to": "",
-                "tot": "str"
-            },
             {
                 "p": "pollminute",
                 "pt": "flow",
@@ -280,14 +256,14 @@
             }
         ],
         "active": true,
-        "x": 120,
+        "x": 130,
         "y": 40,
         "wires": []
     },
     {
-        "id": "e341e361.0f889",
+        "id": "7160af01.c48f3",
         "type": "inject",
-        "z": "929f749.9a8e088",
+        "z": "16a48968.aea6b7",
         "name": "Build JSON",
         "topic": "",
         "payload": "",
@@ -296,68 +272,66 @@
         "crontab": "",
         "once": true,
         "onceDelay": "0.1",
-        "x": 110,
+        "x": 130,
         "y": 140,
         "wires": [
             [
-                "fbbe0ce4.21a56",
-                "c84887a1.a68038",
-                "67b8b4a9.34938c"
+                "48306e8e.ab66f"
             ]
         ]
     },
     {
-        "id": "fbbe0ce4.21a56",
+        "id": "cf432977.2b76b8",
         "type": "function",
-        "z": "929f749.9a8e088",
+        "z": "16a48968.aea6b7",
         "name": "Create Login JSON",
-        "func": "var values = flow.get([\"username\", \"password\"]);\n\nmsg.payload = {\n  \"username\": values[0],\n  \"password\": values[1],\n  \"rememberMe\": \"true\"\n};\nreturn msg;",
+        "func": "msg.payload = {\n  \"username\": msg.username,\n  \"password\": msg.password,\n  \"rememberMe\": \"true\"\n};\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 310,
+        "x": 490,
         "y": 100,
         "wires": [
             [
-                "efa7b6c7.3be5d8"
+                "12273b0b.a98cd5"
             ]
         ]
     },
     {
-        "id": "c84887a1.a68038",
+        "id": "bee08201.c7d62",
         "type": "function",
-        "z": "929f749.9a8e088",
+        "z": "16a48968.aea6b7",
         "name": "Create Read Request JSON",
-        "func": "var values = flow.get([\"esiid\", \"meternumber\"]);\n\nmsg.payload = {\n  \"ESIID\": values[0],\n  \"MeterNumber\": values[1]\n};\nreturn msg;",
+        "func": "msg.payload = {\n  \"ESIID\": msg.esiid,\n  \"MeterNumber\": msg.meternumber\n};\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 340,
+        "x": 520,
         "y": 140,
         "wires": [
             [
-                "574028a3.921758"
+                "8ec6ffdb.13c4b"
             ]
         ]
     },
     {
-        "id": "67b8b4a9.34938c",
+        "id": "677aa62e.4af098",
         "type": "function",
-        "z": "929f749.9a8e088",
+        "z": "16a48968.aea6b7",
         "name": "Create Read Result JSON",
-        "func": "var values = flow.get([\"esiid\"]);\n\nmsg.payload = {\n  \"ESIID\": values[0]\n};\nreturn msg;",
+        "func": "var values = flow.get([\"esiid\"]);\n\nmsg.payload = {\n  \"ESIID\": msg.esiid\n};\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 340,
+        "x": 520,
         "y": 180,
         "wires": [
             [
-                "c9b46ae2.dd9d58"
+                "a7d6aa76.c66b38"
             ]
         ]
     },
     {
-        "id": "b4a08a36.ed3d28",
+        "id": "a6824cfe.8985b",
         "type": "switch",
-        "z": "929f749.9a8e088",
+        "z": "16a48968.aea6b7",
         "name": "Waiting for Response",
         "property": "readrequested",
         "propertyType": "flow",
@@ -371,18 +345,18 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 340,
+        "x": 360,
         "y": 460,
         "wires": [
             [
-                "127b6780.428209"
+                "94a78438.8a8328"
             ]
         ]
     },
     {
-        "id": "7535014c.e577e",
+        "id": "10f6f3a3.0bfc4c",
         "type": "change",
-        "z": "929f749.9a8e088",
+        "z": "16a48968.aea6b7",
         "name": "Not Waiting for Response",
         "rules": [
             {
@@ -398,31 +372,31 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1130,
+        "x": 1150,
         "y": 480,
         "wires": [
             [
-                "cc29a088.fcd1a"
+                "f6641b8d.bdfa88"
             ]
         ]
     },
     {
-        "id": "fd789879.dd6f08",
+        "id": "2048df2d.582db",
         "type": "mqtt out",
-        "z": "929f749.9a8e088",
+        "z": "16a48968.aea6b7",
         "name": "MQTT: Send Reading",
         "topic": "smt/reading",
         "qos": "",
         "retain": "true",
         "broker": "",
-        "x": 1540,
+        "x": 1560,
         "y": 500,
         "wires": []
     },
     {
-        "id": "cc29a088.fcd1a",
+        "id": "f6641b8d.bdfa88",
         "type": "change",
-        "z": "929f749.9a8e088",
+        "z": "16a48968.aea6b7",
         "name": "Parse Reading",
         "rules": [
             {
@@ -438,19 +412,19 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1340,
+        "x": 1360,
         "y": 480,
         "wires": [
             [
-                "fd789879.dd6f08",
-                "589d30ac.c14f6"
+                "2048df2d.582db",
+                "e080095e.63ca18"
             ]
         ]
     },
     {
-        "id": "65a100aa.7aa08",
+        "id": "e6ca1a61.e6a1b8",
         "type": "inject",
-        "z": "929f749.9a8e088",
+        "z": "16a48968.aea6b7",
         "name": "Read Meter",
         "topic": "",
         "payload": "",
@@ -459,37 +433,37 @@
         "crontab": "",
         "once": false,
         "onceDelay": "0.1",
-        "x": 110,
+        "x": 130,
         "y": 360,
         "wires": [
             [
-                "9c3d0ef4.effb3"
+                "164b7d9.7ce1982"
             ]
         ]
     },
     {
-        "id": "e9933680.4df1b8",
+        "id": "71b0b0c2.cbc1d",
         "type": "https-node",
-        "z": "929f749.9a8e088",
+        "z": "16a48968.aea6b7",
         "name": "Request Read",
         "method": "POST",
         "ret": "obj",
         "url": "https://smartmetertexas.com/api/ondemandread",
         "authorized": false,
         "agent": true,
-        "x": 760,
+        "x": 780,
         "y": 360,
         "wires": [
             [
-                "22fb4178.fb9d9e",
-                "5c1270d5.37835"
+                "3fff322e.9ee70e",
+                "224a6869.ff61d8"
             ]
         ]
     },
     {
-        "id": "efa7b6c7.3be5d8",
+        "id": "12273b0b.a98cd5",
         "type": "change",
-        "z": "929f749.9a8e088",
+        "z": "16a48968.aea6b7",
         "name": "",
         "rules": [
             {
@@ -505,16 +479,16 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 570,
+        "x": 750,
         "y": 100,
         "wires": [
             []
         ]
     },
     {
-        "id": "574028a3.921758",
+        "id": "8ec6ffdb.13c4b",
         "type": "change",
-        "z": "929f749.9a8e088",
+        "z": "16a48968.aea6b7",
         "name": "",
         "rules": [
             {
@@ -530,16 +504,16 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 570,
+        "x": 750,
         "y": 140,
         "wires": [
             []
         ]
     },
     {
-        "id": "c9b46ae2.dd9d58",
+        "id": "a7d6aa76.c66b38",
         "type": "change",
-        "z": "929f749.9a8e088",
+        "z": "16a48968.aea6b7",
         "name": "",
         "rules": [
             {
@@ -555,16 +529,16 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 570,
+        "x": 750,
         "y": 180,
         "wires": [
             []
         ]
     },
     {
-        "id": "22fb4178.fb9d9e",
+        "id": "3fff322e.9ee70e",
         "type": "switch",
-        "z": "929f749.9a8e088",
+        "z": "16a48968.aea6b7",
         "name": "Request Good",
         "property": "payload.data.statusReason",
         "propertyType": "msg",
@@ -578,18 +552,18 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 940,
+        "x": 960,
         "y": 380,
         "wires": [
             [
-                "1bad1fe2.a8d68"
+                "64edb1fa.23ddc"
             ]
         ]
     },
     {
-        "id": "1bad1fe2.a8d68",
+        "id": "64edb1fa.23ddc",
         "type": "change",
-        "z": "929f749.9a8e088",
+        "z": "16a48968.aea6b7",
         "name": "Waiting for Response",
         "rules": [
             {
@@ -605,16 +579,16 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1140,
+        "x": 1160,
         "y": 380,
         "wires": [
             []
         ]
     },
     {
-        "id": "8d612168.e1659",
+        "id": "ad2e1fec.cc353",
         "type": "debug",
-        "z": "929f749.9a8e088",
+        "z": "16a48968.aea6b7",
         "name": "Debug: Get Reading",
         "active": false,
         "tosidebar": true,
@@ -622,14 +596,14 @@
         "tostatus": false,
         "complete": "payload",
         "targetType": "msg",
-        "x": 920,
+        "x": 940,
         "y": 440,
         "wires": []
     },
     {
-        "id": "bb3a805c.32b0a",
+        "id": "bbf4aae4.b2cbc8",
         "type": "change",
-        "z": "929f749.9a8e088",
+        "z": "16a48968.aea6b7",
         "name": "Apply HTTP Config",
         "rules": [
             {
@@ -659,18 +633,18 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 570,
+        "x": 590,
         "y": 360,
         "wires": [
             [
-                "e9933680.4df1b8"
+                "71b0b0c2.cbc1d"
             ]
         ]
     },
     {
-        "id": "5c1270d5.37835",
+        "id": "224a6869.ff61d8",
         "type": "debug",
-        "z": "929f749.9a8e088",
+        "z": "16a48968.aea6b7",
         "name": "Debug: Read Meter",
         "active": true,
         "tosidebar": true,
@@ -678,14 +652,14 @@
         "tostatus": false,
         "complete": "payload",
         "targetType": "msg",
-        "x": 960,
+        "x": 980,
         "y": 340,
         "wires": []
     },
     {
-        "id": "5283b16c.03e11",
+        "id": "6de863e9.3ff2fc",
         "type": "debug",
-        "z": "929f749.9a8e088",
+        "z": "16a48968.aea6b7",
         "name": "Debug: Auth Token",
         "active": true,
         "tosidebar": true,
@@ -693,14 +667,14 @@
         "tostatus": false,
         "complete": "payload",
         "targetType": "msg",
-        "x": 970,
+        "x": 1270,
         "y": 280,
         "wires": []
     },
     {
-        "id": "589d30ac.c14f6",
+        "id": "e080095e.63ca18",
         "type": "debug",
-        "z": "929f749.9a8e088",
+        "z": "16a48968.aea6b7",
         "name": "Debug: Last Reading",
         "active": true,
         "tosidebar": true,
@@ -708,41 +682,108 @@
         "tostatus": false,
         "complete": "payload",
         "targetType": "msg",
-        "x": 1540,
+        "x": 1560,
         "y": 460,
         "wires": []
     },
     {
-        "id": "bee6516a.32c51",
+        "id": "ddbeb02.59b285",
         "type": "rbe",
-        "z": "929f749.9a8e088",
+        "z": "16a48968.aea6b7",
         "name": "",
         "func": "rbe",
         "gap": "",
         "start": "",
         "inout": "out",
         "property": "payload",
-        "x": 410,
+        "x": 430,
         "y": 360,
         "wires": [
             [
-                "bb3a805c.32b0a"
+                "bbf4aae4.b2cbc8"
             ]
         ]
     },
     {
-        "id": "9c3d0ef4.effb3",
+        "id": "164b7d9.7ce1982",
         "type": "function",
-        "z": "929f749.9a8e088",
+        "z": "16a48968.aea6b7",
         "name": "Check Time",
         "func": "var date = new Date();\nvar minute = (\"0\"+date.getMinutes()).substr(-2);\nvar hour = (\"0\"+date.getHours()).substr(-2);\n\nvar values = flow.get([\"pollminute\"]);\nvar poll = values[0];\n\nif (minute == poll){\n    return { payload : hour };\n}\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 270,
+        "x": 290,
         "y": 360,
         "wires": [
             [
-                "bee6516a.32c51"
+                "ddbeb02.59b285"
+            ]
+        ]
+    },
+    {
+        "id": "23d2a357.e5208c",
+        "type": "function",
+        "z": "16a48968.aea6b7",
+        "name": "Check Time",
+        "func": "var date = new Date();\nvar minute = (\"0\"+date.getMinutes()).substr(-2);\nvar hour = (\"0\"+date.getHours()).substr(-2);\n\nvar values = flow.get([\"pollminute\"]);\nvar poll = values[0];\n\nif (minute == poll - 1){\n    return { payload : hour };\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 310,
+        "y": 260,
+        "wires": [
+            [
+                "2d1b0107.9d202e"
+            ]
+        ]
+    },
+    {
+        "id": "2d1b0107.9d202e",
+        "type": "rbe",
+        "z": "16a48968.aea6b7",
+        "name": "",
+        "func": "rbe",
+        "gap": "",
+        "start": "",
+        "inout": "out",
+        "property": "payload",
+        "x": 450,
+        "y": 260,
+        "wires": [
+            [
+                "8eea7068.95c6c"
+            ]
+        ]
+    },
+    {
+        "id": "48306e8e.ab66f",
+        "type": "credentials",
+        "z": "16a48968.aea6b7",
+        "name": "Credentials",
+        "props": [
+            {
+                "value": "username",
+                "type": "msg"
+            },
+            {
+                "value": "password",
+                "type": "msg"
+            },
+            {
+                "value": "esiid",
+                "type": "msg"
+            },
+            {
+                "value": "meternumber",
+                "type": "msg"
+            }
+        ],
+        "x": 290,
+        "y": 140,
+        "wires": [
+            [
+                "cf432977.2b76b8",
+                "bee08201.c7d62",
+                "677aa62e.4af098"
             ]
         ]
     }

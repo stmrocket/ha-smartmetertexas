@@ -10,6 +10,7 @@ Access your current meter reading and daily usage from the Smart Meter Texas API
 * Node-Red and the following additional nodes:
    * node-red-contrib-config
    * node-red-contrib-https
+   * node-red-contrib-credentials
 ---
 ### Installation:
 1. Make sure your system meets the above prerequisites.
@@ -18,13 +19,13 @@ Access your current meter reading and daily usage from the Smart Meter Texas API
 4. Continue with configuration!
 ---
 ### Configuration:
-1. Open the imported Node-Red flow and open the Configuration node.  You will need to fill in your Smart Meter Texas Username, Password, ESIID, and Meter Number.  Optionally, you can change the minute when the meter will be polled every hour.  Click 'Done' when you are finished.
-2. Open the 'MQTT: Send Reading' node and configure your MQTT server information.
-3. When you are finished configuring the nodes, click the 'Deploy' button to start the flow with your new configuration.
+1. Open the imported Node-Red flow and open the __Credentials__ node.  You will need to fill in your Smart Meter Texas Username, Password, ESIID, and Meter Number.  Optionally, you can change the minute when the meter will be polled every hour in the __Configuration__ node.  Click __Done__ when you are finished.
+2. Open the __MQTT: Send Reading__ node and configure your MQTT server information.
+3. When you are finished configuring the nodes, click the __Deploy__ button to start the flow with your new configuration.
 4. If you are using the Home Assistant package, set your electricity cost in the entity __input_number.smt_energy_cost__.
 ---
 ### Usage:
-The Node-Red flow will request a meter read at 30 minute intervals since the last successful read.  It will then request the results of the meter read every 30 seconds until they are available.  Both the current meter reading ais reported over MQTT with the topic smt/reading.  
+The Node-Red flow will request a meter read at 30 minute intervals since the last successful read.  It will then request the results of the meter read every 30 seconds until they are available.  The current meter reading is reported over MQTT with the topic smt/reading.  
 
 Note that the API limits each ESIID to two reads per hour and 24 reads per day.  The limit is based on the time when the reading is successfully retrieved from the meter.  Increasing the frequency of reads will result in an error until the hour or day resets (depending on the error).
 
