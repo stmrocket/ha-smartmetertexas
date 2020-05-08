@@ -1,6 +1,6 @@
 ## Node-Red Implementation of the Smart Meter Texas API
 
-Access your current meter reading and daily usage from the Smart Meter Texas API!  The Node-Red flow requests a meter read every hour and reports the results over MQTT.  There is also a package for Home Assistant providing a number of useful sensors for use in your home.
+Access your current meter reading from the Smart Meter Texas API!  The Node-Red flow requests a meter read every hour and reports the results over MQTT.  There is also a package for Home Assistant providing a number of useful sensors for use in your home.
 
 ---
 ### Prerequisites:
