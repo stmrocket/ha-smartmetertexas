@@ -30,4 +30,6 @@ The Node-Red flow will request a meter read at 30 minute intervals since the las
 Note that the API limits each ESIID to two reads per hour and 24 reads per day.  The limit is based on the time when the reading is successfully retrieved from the meter.  Increasing the frequency of reads will result in an error until the hour or day resets (depending on the error).
 
 ---
+__Thanks:__ This code would not be possible without the previous work by [keatontaylor](https://github.com/keatontaylor/smartmetertexas-api).
+---
 __Disclaimer:__ This information is not provided by, nor endorsed by Smart Meter Texas.  As this API is unpublished, it could break at any time.  
