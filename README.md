@@ -28,6 +28,7 @@ Access your current meter reading from the Smart Meter Texas API!  The Node-Red 
 The Node-Red flow will request a meter read at 30 minute intervals since the last successful read.  It will then request the results of the meter read every 30 seconds until they are available.  The current meter reading is reported over MQTT with the topic smt/reading.  
 
 Note that the API limits each ESIID to two reads per hour and 24 reads per day.  The limit is based on the time when the reading is successfully retrieved from the meter.  Increasing the frequency of reads will result in an error until the hour or day resets (depending on the error).
+
 ---
 __Thanks:__ This code would not be possible without the previous work by [keatontaylor](https://github.com/keatontaylor/smartmetertexas-api).
 
