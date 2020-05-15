@@ -1,15 +1,15 @@
 [
     {
-        "id": "16a48968.aea6b7",
+        "id": "f8297485.d32748",
         "type": "tab",
         "label": "Smart Meter Texas",
         "disabled": false,
         "info": ""
     },
     {
-        "id": "9e0cdc70.c3581",
+        "id": "229dbc53.b39f84",
         "type": "inject",
-        "z": "16a48968.aea6b7",
+        "z": "f8297485.d32748",
         "name": "Retrieve Reading",
         "topic": "",
         "payload": "",
@@ -18,18 +18,18 @@
         "crontab": "",
         "once": true,
         "onceDelay": "1.0",
-        "x": 150,
+        "x": 130,
         "y": 460,
         "wires": [
             [
-                "a6824cfe.8985b"
+                "49de2e1c.6a2d7"
             ]
         ]
     },
     {
-        "id": "94a78438.8a8328",
+        "id": "f805b5.98485a48",
         "type": "change",
-        "z": "16a48968.aea6b7",
+        "z": "f8297485.d32748",
         "name": "Apply HTTP Config",
         "rules": [
             {
@@ -59,37 +59,37 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 570,
+        "x": 550,
         "y": 460,
         "wires": [
             [
-                "5a26c4a1.c10c6c"
+                "cfcca3db.82497"
             ]
         ]
     },
     {
-        "id": "5a26c4a1.c10c6c",
+        "id": "cfcca3db.82497",
         "type": "https-node",
-        "z": "16a48968.aea6b7",
+        "z": "f8297485.d32748",
         "name": "Get Reading",
         "method": "POST",
         "ret": "obj",
         "url": "https://smartmetertexas.com/api/usage/latestodrread",
         "authorized": false,
         "agent": true,
-        "x": 750,
+        "x": 730,
         "y": 460,
         "wires": [
             [
-                "e23f0059.9a102",
-                "ad2e1fec.cc353"
+                "45fd4f16.4d205",
+                "ba8a2ae2.a4c338"
             ]
         ]
     },
     {
-        "id": "e23f0059.9a102",
+        "id": "45fd4f16.4d205",
         "type": "switch",
-        "z": "16a48968.aea6b7",
+        "z": "f8297485.d32748",
         "name": "Status Complete",
         "property": "payload.data.odrstatus",
         "propertyType": "msg",
@@ -103,18 +103,18 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 930,
+        "x": 900,
         "y": 480,
         "wires": [
             [
-                "10f6f3a3.0bfc4c"
+                "f35231ec.019d9"
             ]
         ]
     },
     {
-        "id": "58c775c2.65129c",
+        "id": "9b94f423.af26c8",
         "type": "inject",
-        "z": "16a48968.aea6b7",
+        "z": "f8297485.d32748",
         "name": "Authenticate",
         "topic": "",
         "payload": "",
@@ -123,18 +123,18 @@
         "crontab": "",
         "once": false,
         "onceDelay": "0.5",
-        "x": 140,
+        "x": 110,
         "y": 260,
         "wires": [
             [
-                "23d2a357.e5208c"
+                "a4d10d90.f8dae"
             ]
         ]
     },
     {
-        "id": "8eea7068.95c6c",
+        "id": "8f12d0a3.66f63",
         "type": "change",
-        "z": "16a48968.aea6b7",
+        "z": "f8297485.d32748",
         "name": "Apply HTTP Config",
         "rules": [
             {
@@ -157,37 +157,37 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 610,
+        "x": 580,
         "y": 260,
         "wires": [
             [
-                "c7deb224.1fdac"
+                "f2f055cc.fa05f8"
             ]
         ]
     },
     {
-        "id": "c7deb224.1fdac",
+        "id": "f2f055cc.fa05f8",
         "type": "https-node",
-        "z": "16a48968.aea6b7",
+        "z": "f8297485.d32748",
         "name": "Log In",
         "method": "POST",
         "ret": "obj",
         "url": "https://smartmetertexas.com/api/user/authenticate",
         "authorized": false,
         "agent": true,
-        "x": 770,
+        "x": 740,
         "y": 260,
         "wires": [
             [
-                "f4a4c08f.8fee1",
-                "b26cdce9.bd958"
+                "4b59cb1f.0b6074",
+                "9e15d26d.67d59"
             ]
         ]
     },
     {
-        "id": "10a0c91.7ccad37",
+        "id": "5a67264f.b0d4a8",
         "type": "change",
-        "z": "16a48968.aea6b7",
+        "z": "f8297485.d32748",
         "name": "",
         "rules": [
             {
@@ -203,18 +203,18 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1080,
+        "x": 1050,
         "y": 280,
         "wires": [
             [
-                "6de863e9.3ff2fc"
+                "197f7fb8.eb7b3"
             ]
         ]
     },
     {
-        "id": "b26cdce9.bd958",
+        "id": "9e15d26d.67d59",
         "type": "debug",
-        "z": "16a48968.aea6b7",
+        "z": "f8297485.d32748",
         "name": "Debug: Login",
         "active": false,
         "tosidebar": true,
@@ -222,30 +222,30 @@
         "tostatus": false,
         "complete": "payload",
         "targetType": "msg",
-        "x": 920,
+        "x": 880,
         "y": 240,
         "wires": []
     },
     {
-        "id": "f4a4c08f.8fee1",
+        "id": "4b59cb1f.0b6074",
         "type": "function",
-        "z": "16a48968.aea6b7",
+        "z": "f8297485.d32748",
         "name": "Add Bearer",
         "func": "msg.payload = \"bearer \" + msg.payload.token;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 910,
+        "x": 880,
         "y": 280,
         "wires": [
             [
-                "10a0c91.7ccad37"
+                "5a67264f.b0d4a8"
             ]
         ]
     },
     {
-        "id": "55ee088.28608f8",
+        "id": "385053da.ffefdc",
         "type": "config",
-        "z": "16a48968.aea6b7",
+        "z": "f8297485.d32748",
         "name": "Configuration",
         "properties": [
             {
@@ -256,14 +256,14 @@
             }
         ],
         "active": true,
-        "x": 130,
+        "x": 110,
         "y": 40,
         "wires": []
     },
     {
-        "id": "7160af01.c48f3",
+        "id": "a33f45a0.ca8a88",
         "type": "inject",
-        "z": "16a48968.aea6b7",
+        "z": "f8297485.d32748",
         "name": "Build JSON",
         "topic": "",
         "payload": "",
@@ -272,66 +272,66 @@
         "crontab": "",
         "once": true,
         "onceDelay": "0.1",
-        "x": 130,
+        "x": 110,
         "y": 140,
         "wires": [
             [
-                "48306e8e.ab66f"
+                "4779bbf2.421be4"
             ]
         ]
     },
     {
-        "id": "cf432977.2b76b8",
+        "id": "eca68eef.a7038",
         "type": "function",
-        "z": "16a48968.aea6b7",
+        "z": "f8297485.d32748",
         "name": "Create Login JSON",
         "func": "msg.payload = {\n  \"username\": msg.username,\n  \"password\": msg.password,\n  \"rememberMe\": \"true\"\n};\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 490,
+        "x": 470,
         "y": 100,
         "wires": [
             [
-                "12273b0b.a98cd5"
+                "39f969.672e1698"
             ]
         ]
     },
     {
-        "id": "bee08201.c7d62",
+        "id": "b72628a.cba9fd8",
         "type": "function",
-        "z": "16a48968.aea6b7",
+        "z": "f8297485.d32748",
         "name": "Create Read Request JSON",
         "func": "msg.payload = {\n  \"ESIID\": msg.esiid,\n  \"MeterNumber\": msg.meternumber\n};\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 520,
+        "x": 500,
         "y": 140,
         "wires": [
             [
-                "8ec6ffdb.13c4b"
+                "896ca32e.dd642"
             ]
         ]
     },
     {
-        "id": "677aa62e.4af098",
+        "id": "4f766b51.f67344",
         "type": "function",
-        "z": "16a48968.aea6b7",
+        "z": "f8297485.d32748",
         "name": "Create Read Result JSON",
-        "func": "var values = flow.get([\"esiid\"]);\n\nmsg.payload = {\n  \"ESIID\": msg.esiid\n};\nreturn msg;",
+        "func": "msg.payload = {\n  \"ESIID\": msg.esiid\n};\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 520,
+        "x": 490,
         "y": 180,
         "wires": [
             [
-                "a7d6aa76.c66b38"
+                "33a32576.b8d44a"
             ]
         ]
     },
     {
-        "id": "a6824cfe.8985b",
+        "id": "49de2e1c.6a2d7",
         "type": "switch",
-        "z": "16a48968.aea6b7",
+        "z": "f8297485.d32748",
         "name": "Waiting for Response",
         "property": "readrequested",
         "propertyType": "flow",
@@ -345,18 +345,18 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 360,
+        "x": 340,
         "y": 460,
         "wires": [
             [
-                "94a78438.8a8328"
+                "f805b5.98485a48"
             ]
         ]
     },
     {
-        "id": "10f6f3a3.0bfc4c",
+        "id": "f35231ec.019d9",
         "type": "change",
-        "z": "16a48968.aea6b7",
+        "z": "f8297485.d32748",
         "name": "Not Waiting for Response",
         "rules": [
             {
@@ -372,31 +372,31 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1150,
+        "x": 1120,
         "y": 480,
         "wires": [
             [
-                "f6641b8d.bdfa88"
+                "3322aadb.931d76"
             ]
         ]
     },
     {
-        "id": "2048df2d.582db",
+        "id": "ad13942f.9299a8",
         "type": "mqtt out",
-        "z": "16a48968.aea6b7",
+        "z": "f8297485.d32748",
         "name": "MQTT: Send Reading",
         "topic": "smt/reading",
         "qos": "",
         "retain": "true",
         "broker": "",
-        "x": 1560,
+        "x": 1530,
         "y": 500,
         "wires": []
     },
     {
-        "id": "f6641b8d.bdfa88",
+        "id": "3322aadb.931d76",
         "type": "change",
-        "z": "16a48968.aea6b7",
+        "z": "f8297485.d32748",
         "name": "Parse Reading",
         "rules": [
             {
@@ -412,19 +412,19 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1360,
+        "x": 1330,
         "y": 480,
         "wires": [
             [
-                "2048df2d.582db",
-                "e080095e.63ca18"
+                "ad13942f.9299a8",
+                "63ab6c38.0d5f84"
             ]
         ]
     },
     {
-        "id": "e6ca1a61.e6a1b8",
+        "id": "aa6c2a69.104ae8",
         "type": "inject",
-        "z": "16a48968.aea6b7",
+        "z": "f8297485.d32748",
         "name": "Read Meter",
         "topic": "",
         "payload": "",
@@ -433,37 +433,37 @@
         "crontab": "",
         "once": false,
         "onceDelay": "0.1",
-        "x": 130,
+        "x": 110,
         "y": 360,
         "wires": [
             [
-                "164b7d9.7ce1982"
+                "aa52a1f.5e5c56"
             ]
         ]
     },
     {
-        "id": "71b0b0c2.cbc1d",
+        "id": "1e663d0f.337c23",
         "type": "https-node",
-        "z": "16a48968.aea6b7",
+        "z": "f8297485.d32748",
         "name": "Request Read",
         "method": "POST",
         "ret": "obj",
         "url": "https://smartmetertexas.com/api/ondemandread",
         "authorized": false,
         "agent": true,
-        "x": 780,
+        "x": 760,
         "y": 360,
         "wires": [
             [
-                "3fff322e.9ee70e",
-                "224a6869.ff61d8"
+                "8a692061.c38d8",
+                "616cab00.8d1ed4"
             ]
         ]
     },
     {
-        "id": "12273b0b.a98cd5",
+        "id": "39f969.672e1698",
         "type": "change",
-        "z": "16a48968.aea6b7",
+        "z": "f8297485.d32748",
         "name": "",
         "rules": [
             {
@@ -479,16 +479,16 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 750,
+        "x": 720,
         "y": 100,
         "wires": [
             []
         ]
     },
     {
-        "id": "8ec6ffdb.13c4b",
+        "id": "896ca32e.dd642",
         "type": "change",
-        "z": "16a48968.aea6b7",
+        "z": "f8297485.d32748",
         "name": "",
         "rules": [
             {
@@ -504,16 +504,16 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 750,
+        "x": 720,
         "y": 140,
         "wires": [
             []
         ]
     },
     {
-        "id": "a7d6aa76.c66b38",
+        "id": "33a32576.b8d44a",
         "type": "change",
-        "z": "16a48968.aea6b7",
+        "z": "f8297485.d32748",
         "name": "",
         "rules": [
             {
@@ -529,16 +529,16 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 750,
+        "x": 730,
         "y": 180,
         "wires": [
             []
         ]
     },
     {
-        "id": "3fff322e.9ee70e",
+        "id": "8a692061.c38d8",
         "type": "switch",
-        "z": "16a48968.aea6b7",
+        "z": "f8297485.d32748",
         "name": "Request Good",
         "property": "payload.data.statusReason",
         "propertyType": "msg",
@@ -552,18 +552,18 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 960,
+        "x": 940,
         "y": 380,
         "wires": [
             [
-                "64edb1fa.23ddc"
+                "41ccc9f0.cb5378"
             ]
         ]
     },
     {
-        "id": "64edb1fa.23ddc",
+        "id": "41ccc9f0.cb5378",
         "type": "change",
-        "z": "16a48968.aea6b7",
+        "z": "f8297485.d32748",
         "name": "Waiting for Response",
         "rules": [
             {
@@ -579,16 +579,16 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1160,
+        "x": 1140,
         "y": 380,
         "wires": [
             []
         ]
     },
     {
-        "id": "ad2e1fec.cc353",
+        "id": "ba8a2ae2.a4c338",
         "type": "debug",
-        "z": "16a48968.aea6b7",
+        "z": "f8297485.d32748",
         "name": "Debug: Get Reading",
         "active": false,
         "tosidebar": true,
@@ -596,14 +596,14 @@
         "tostatus": false,
         "complete": "payload",
         "targetType": "msg",
-        "x": 940,
+        "x": 910,
         "y": 440,
         "wires": []
     },
     {
-        "id": "bbf4aae4.b2cbc8",
+        "id": "a411cabf.0a9678",
         "type": "change",
-        "z": "16a48968.aea6b7",
+        "z": "f8297485.d32748",
         "name": "Apply HTTP Config",
         "rules": [
             {
@@ -633,48 +633,48 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 590,
+        "x": 570,
         "y": 360,
         "wires": [
             [
-                "71b0b0c2.cbc1d"
+                "1e663d0f.337c23"
             ]
         ]
     },
     {
-        "id": "224a6869.ff61d8",
+        "id": "616cab00.8d1ed4",
         "type": "debug",
-        "z": "16a48968.aea6b7",
+        "z": "f8297485.d32748",
         "name": "Debug: Read Meter",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
         "complete": "payload",
         "targetType": "msg",
-        "x": 980,
+        "x": 950,
         "y": 340,
         "wires": []
     },
     {
-        "id": "6de863e9.3ff2fc",
+        "id": "197f7fb8.eb7b3",
         "type": "debug",
-        "z": "16a48968.aea6b7",
+        "z": "f8297485.d32748",
         "name": "Debug: Auth Token",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
         "complete": "payload",
         "targetType": "msg",
-        "x": 1270,
+        "x": 1240,
         "y": 280,
         "wires": []
     },
     {
-        "id": "e080095e.63ca18",
+        "id": "63ab6c38.0d5f84",
         "type": "debug",
-        "z": "16a48968.aea6b7",
+        "z": "f8297485.d32748",
         "name": "Debug: Last Reading",
         "active": true,
         "tosidebar": true,
@@ -682,82 +682,82 @@
         "tostatus": false,
         "complete": "payload",
         "targetType": "msg",
-        "x": 1560,
+        "x": 1530,
         "y": 460,
         "wires": []
     },
     {
-        "id": "ddbeb02.59b285",
+        "id": "663ac43a.779abc",
         "type": "rbe",
-        "z": "16a48968.aea6b7",
+        "z": "f8297485.d32748",
         "name": "",
         "func": "rbe",
         "gap": "",
         "start": "",
         "inout": "out",
         "property": "payload",
-        "x": 430,
+        "x": 410,
         "y": 360,
         "wires": [
             [
-                "bbf4aae4.b2cbc8"
+                "a411cabf.0a9678"
             ]
         ]
     },
     {
-        "id": "164b7d9.7ce1982",
+        "id": "aa52a1f.5e5c56",
         "type": "function",
-        "z": "16a48968.aea6b7",
+        "z": "f8297485.d32748",
         "name": "Check Time",
         "func": "var date = new Date();\nvar minute = (\"0\"+date.getMinutes()).substr(-2);\nvar hour = (\"0\"+date.getHours()).substr(-2);\n\nvar values = flow.get([\"pollminute\"]);\nvar poll = values[0];\n\nif (minute == poll){\n    return { payload : hour };\n}\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 290,
+        "x": 270,
         "y": 360,
         "wires": [
             [
-                "ddbeb02.59b285"
+                "663ac43a.779abc"
             ]
         ]
     },
     {
-        "id": "23d2a357.e5208c",
+        "id": "a4d10d90.f8dae",
         "type": "function",
-        "z": "16a48968.aea6b7",
+        "z": "f8297485.d32748",
         "name": "Check Time",
-        "func": "var date = new Date();\nvar minute = (\"0\"+date.getMinutes()).substr(-2);\nvar hour = (\"0\"+date.getHours()).substr(-2);\n\nvar values = flow.get([\"pollminute\"]);\nvar poll = values[0];\n\nif (minute == poll - 1){\n    return { payload : hour };\n}\n",
+        "func": "var date = new Date();\nvar minute = (\"0\"+date.getMinutes()).substr(-2);\nvar hour = (\"0\"+date.getHours()).substr(-2);\n\nvar values = flow.get([\"pollminute\"]);\nvar poll = values[0];\n\nif (poll === 0 & minute == 59){\n    return { payload : hour };\n}\n\nelse if (minute == poll - 1){\n    return { payload : hour };\n}\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 310,
+        "x": 280,
         "y": 260,
         "wires": [
             [
-                "2d1b0107.9d202e"
+                "1b6c236b.153bbd"
             ]
         ]
     },
     {
-        "id": "2d1b0107.9d202e",
+        "id": "1b6c236b.153bbd",
         "type": "rbe",
-        "z": "16a48968.aea6b7",
+        "z": "f8297485.d32748",
         "name": "",
         "func": "rbe",
         "gap": "",
         "start": "",
         "inout": "out",
         "property": "payload",
-        "x": 450,
+        "x": 420,
         "y": 260,
         "wires": [
             [
-                "8eea7068.95c6c"
+                "8f12d0a3.66f63"
             ]
         ]
     },
     {
-        "id": "48306e8e.ab66f",
+        "id": "4779bbf2.421be4",
         "type": "credentials",
-        "z": "16a48968.aea6b7",
+        "z": "f8297485.d32748",
         "name": "Credentials",
         "props": [
             {
@@ -777,13 +777,13 @@
                 "type": "msg"
             }
         ],
-        "x": 290,
+        "x": 270,
         "y": 140,
         "wires": [
             [
-                "cf432977.2b76b8",
-                "bee08201.c7d62",
-                "677aa62e.4af098"
+                "eca68eef.a7038",
+                "b72628a.cba9fd8",
+                "4f766b51.f67344"
             ]
         ]
     }
