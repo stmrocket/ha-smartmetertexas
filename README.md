@@ -31,5 +31,6 @@ Note that the API limits each ESIID to two reads per hour and 24 reads per day. 
 
 ---
 __Thanks:__ This code would not be possible without the previous work by [keatontaylor](https://github.com/keatontaylor/smartmetertexas-api).
+
 ---
 __Disclaimer:__ This information is not provided by, nor endorsed by Smart Meter Texas.  As this API is unpublished, it could break at any time.  
