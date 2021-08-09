@@ -1,9 +1,4 @@
 sensor:
-
-  - platform: mqtt
-    name: SMT Current Reading
-    state_topic: "smt/reading"
-    unit_of_measurement: "kWh"
     
   - platform: template
     sensors:

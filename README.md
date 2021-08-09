@@ -8,9 +8,11 @@ Access your current meter reading from the Smart Meter Texas API!  The Node-Red 
 * Your Smart Meter Texas Username, Password, ESIID, and Meter Number
 * An MQTT Server
 * Node-Red and the following additional nodes:
-   * node-red-contrib-config
+   * node-red-contrib-home-assistant-websocket (if you use Home Assistant)
    * node-red-contrib-https
    * node-red-contrib-credentials
+   * node-red-contrib-cron-plus
+
 ---
 ### Installation:
 1. Make sure your system meets the above prerequisites.
@@ -19,8 +21,8 @@ Access your current meter reading from the Smart Meter Texas API!  The Node-Red 
 4. Continue with configuration!
 ---
 ### Configuration:
-1. Open the imported Node-Red flow and open the __Credentials__ node.  You will need to fill in your Smart Meter Texas Username, Password, ESIID, and Meter Number.  Optionally, you can change the minute when the meter will be polled every hour in the __Configuration__ node.  Click __Done__ when you are finished.
-2. Open the __MQTT: Send Reading__ node and configure your MQTT server information.
+1. Open the imported Node-Red flow and open the __Credentials__ node.  You will need to fill in your Smart Meter Texas Username, Password, ESIID, and Meter Number.  Optionally, you can change the minute when the meter will be polled every hour in the __Cron+__ nodes.  Click __Done__ when you are finished.
+2. Open the __SMT Current Reading__ node and configure your Home Assistant server information.
 3. When you are finished configuring the nodes, click the __Deploy__ button to start the flow with your new configuration.
 4. If you are using the Home Assistant package, set your electricity cost in the entity __input_number.smt_energy_cost__.
 ---
