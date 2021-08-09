@@ -584,11 +584,11 @@
     "attributes": [{
         "property": "odr_date",
         "value": "payload.data.odrdate",
-        "valueType": "str"
+        "valueType": "msg"
     }, {
         "property": "odr_usage",
         "value": "payload.data.odrusage",
-        "valueType": "str"
+        "valueType": "msg"
     }],
     "resend": true,
     "outputLocation": "",
