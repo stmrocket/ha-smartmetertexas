@@ -1,12 +1,16 @@
+# Needed for mqtt sensor addition to home assistant.
+# Can be used in the energy dashboard as is
 mqtt:
-
   sensor:
     name: SMT Current Reading
     state_topic: "smt/reading"
     unit_of_measurement: "kWh"
+    device_class: energy
+    state_class: total_increasing
 
+# OPTIONAL
+# Use only if you do not want to use the sensor above in the native Energy Dashboard
 sensor:
-    
   - platform: template
     sensors:
 
