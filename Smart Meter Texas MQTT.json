@@ -1,0 +1,883 @@
+[
+    {
+        "id": "597d1fcff3b6e84f",
+        "type": "tab",
+        "label": "Smart Meter Texas MQTT",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "1e8f2392d31a81b5",
+        "type": "inject",
+        "z": "597d1fcff3b6e84f",
+        "name": "Retrieve Reading",
+        "props": [
+            {
+                "p": "payload",
+                "v": "",
+                "vt": "date"
+            },
+            {
+                "p": "topic",
+                "v": "",
+                "vt": "string"
+            }
+        ],
+        "repeat": "30",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1.0",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 130,
+        "y": 460,
+        "wires": [
+            [
+                "23cb249ca9df1340"
+            ]
+        ]
+    },
+    {
+        "id": "cdc84190a6fd2db0",
+        "type": "change",
+        "z": "597d1fcff3b6e84f",
+        "name": "Apply HTTP Config",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "resultjson",
+                "tot": "flow"
+            },
+            {
+                "t": "set",
+                "p": "headers.accept",
+                "pt": "msg",
+                "to": "application/json, text/plain, */*",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "headers.accept-language",
+                "pt": "msg",
+                "to": "en-US,en;q=0.9",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "headers.cache-control",
+                "pt": "msg",
+                "to": "no-cache",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "headers.content-type",
+                "pt": "msg",
+                "to": "application/json",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "headers.origin",
+                "pt": "msg",
+                "to": "https://www.smartmetertexas.com",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "headers.pragma",
+                "pt": "msg",
+                "to": "no-cache",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "headers.referer",
+                "pt": "msg",
+                "to": "https://www.smartmetertexas.com/home",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "headers.user-agent",
+                "pt": "msg",
+                "to": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "headers.authorization",
+                "pt": "msg",
+                "to": "token",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 550,
+        "y": 460,
+        "wires": [
+            [
+                "8b727a75d9e26e12"
+            ]
+        ]
+    },
+    {
+        "id": "a706bb6d540a8e26",
+        "type": "switch",
+        "z": "597d1fcff3b6e84f",
+        "name": "Status Complete",
+        "property": "payload.data.odrstatus",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "COMPLETED",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 950,
+        "y": 480,
+        "wires": [
+            [
+                "94e25ab15f67e0a7"
+            ]
+        ]
+    },
+    {
+        "id": "e72f9d0f4ff41c6c",
+        "type": "change",
+        "z": "597d1fcff3b6e84f",
+        "name": "Apply HTTP Config",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "authjson",
+                "tot": "flow"
+            },
+            {
+                "t": "set",
+                "p": "headers.accept",
+                "pt": "msg",
+                "to": "application/json, text/plain, */*",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "headers.accept-language",
+                "pt": "msg",
+                "to": "en-US,en;q=0.9",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "headers.cache-control",
+                "pt": "msg",
+                "to": "no-cache",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "headers.content-type",
+                "pt": "msg",
+                "to": "application/json",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "headers.origin",
+                "pt": "msg",
+                "to": "https://www.smartmetertexas.com",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "headers.pragma",
+                "pt": "msg",
+                "to": "no-cache",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "headers.referer",
+                "pt": "msg",
+                "to": "https://www.smartmetertexas.com/home",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "headers.user-agent",
+                "pt": "msg",
+                "to": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 290,
+        "y": 260,
+        "wires": [
+            [
+                "0c4943b8b62ab5b6"
+            ]
+        ]
+    },
+    {
+        "id": "f3493c22d2f64207",
+        "type": "change",
+        "z": "597d1fcff3b6e84f",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "token",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 760,
+        "y": 280,
+        "wires": [
+            [
+                "e2a4e9561718f396"
+            ]
+        ]
+    },
+    {
+        "id": "87164816306b4765",
+        "type": "debug",
+        "z": "597d1fcff3b6e84f",
+        "name": "Debug: Login",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 600,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "c43524ab8b651b8f",
+        "type": "function",
+        "z": "597d1fcff3b6e84f",
+        "name": "Add Bearer",
+        "func": "msg.payload = \"bearer \" + msg.payload.token;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 590,
+        "y": 280,
+        "wires": [
+            [
+                "f3493c22d2f64207"
+            ]
+        ]
+    },
+    {
+        "id": "70ef89233f33cb5a",
+        "type": "inject",
+        "z": "597d1fcff3b6e84f",
+        "name": "Build JSON",
+        "props": [
+            {
+                "p": "payload",
+                "v": "",
+                "vt": "date"
+            },
+            {
+                "p": "topic",
+                "v": "",
+                "vt": "string"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.1",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 140,
+        "wires": [
+            [
+                "d238a2fc96897e67"
+            ]
+        ]
+    },
+    {
+        "id": "afbaf4994608d1d1",
+        "type": "function",
+        "z": "597d1fcff3b6e84f",
+        "name": "Create Login JSON",
+        "func": "msg.payload = {\n  \"username\": msg.username,\n  \"password\": msg.password,\n  \"rememberMe\": \"true\"\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 470,
+        "y": 100,
+        "wires": [
+            [
+                "ddfaef7b2a651c0b"
+            ]
+        ]
+    },
+    {
+        "id": "d0d3b01261442029",
+        "type": "function",
+        "z": "597d1fcff3b6e84f",
+        "name": "Create Read Request JSON",
+        "func": "msg.payload = {\n  \"ESIID\": msg.esiid,\n  \"MeterNumber\": msg.meternumber\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 500,
+        "y": 140,
+        "wires": [
+            [
+                "1f0b9380ebddf0ee"
+            ]
+        ]
+    },
+    {
+        "id": "876b182afad07815",
+        "type": "function",
+        "z": "597d1fcff3b6e84f",
+        "name": "Create Read Result JSON",
+        "func": "msg.payload = {\n  \"ESIID\": msg.esiid\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 500,
+        "y": 180,
+        "wires": [
+            [
+                "a046194916990406"
+            ]
+        ]
+    },
+    {
+        "id": "23cb249ca9df1340",
+        "type": "switch",
+        "z": "597d1fcff3b6e84f",
+        "name": "Waiting for Response",
+        "property": "readrequested",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 340,
+        "y": 460,
+        "wires": [
+            [
+                "cdc84190a6fd2db0"
+            ]
+        ]
+    },
+    {
+        "id": "94e25ab15f67e0a7",
+        "type": "change",
+        "z": "597d1fcff3b6e84f",
+        "name": "Not Waiting for Response",
+        "rules": [
+            {
+                "t": "set",
+                "p": "readrequested",
+                "pt": "flow",
+                "to": "0",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1170,
+        "y": 480,
+        "wires": [
+            [
+                "d01bdf9250a193a0"
+            ]
+        ]
+    },
+    {
+        "id": "ddfaef7b2a651c0b",
+        "type": "change",
+        "z": "597d1fcff3b6e84f",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "authjson",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 730,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1f0b9380ebddf0ee",
+        "type": "change",
+        "z": "597d1fcff3b6e84f",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "readjson",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 730,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a046194916990406",
+        "type": "change",
+        "z": "597d1fcff3b6e84f",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "resultjson",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 730,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "dea77ece1f527941",
+        "type": "switch",
+        "z": "597d1fcff3b6e84f",
+        "name": "Request Good",
+        "property": "payload.data.statusReason",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "Request submitted successfully for further processing",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 660,
+        "y": 380,
+        "wires": [
+            [
+                "0150f59917152fd7"
+            ]
+        ]
+    },
+    {
+        "id": "0150f59917152fd7",
+        "type": "change",
+        "z": "597d1fcff3b6e84f",
+        "name": "Waiting for Response",
+        "rules": [
+            {
+                "t": "set",
+                "p": "readrequested",
+                "pt": "flow",
+                "to": "1",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 860,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6544d74bb811947f",
+        "type": "debug",
+        "z": "597d1fcff3b6e84f",
+        "name": "Debug: Get Reading",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 960,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "c70f916d692a88e6",
+        "type": "change",
+        "z": "597d1fcff3b6e84f",
+        "name": "Apply HTTP Config",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "readjson",
+                "tot": "flow"
+            },
+            {
+                "t": "set",
+                "p": "headers.accept",
+                "pt": "msg",
+                "to": "application/json, text/plain, */*",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "headers.accept-language",
+                "pt": "msg",
+                "to": "en-US,en;q=0.9",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "headers.cache-control",
+                "pt": "msg",
+                "to": "no-cache",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "headers.content-type",
+                "pt": "msg",
+                "to": "application/json",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "headers.origin",
+                "pt": "msg",
+                "to": "https://www.smartmetertexas.com",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "headers.pragma",
+                "pt": "msg",
+                "to": "no-cache",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "headers.referer",
+                "pt": "msg",
+                "to": "https://www.smartmetertexas.com/home",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "headers.user-agent",
+                "pt": "msg",
+                "to": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "headers.authorization",
+                "pt": "msg",
+                "to": "token",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 290,
+        "y": 360,
+        "wires": [
+            [
+                "d5590593db6be0a7"
+            ]
+        ]
+    },
+    {
+        "id": "3237e5bde125a28d",
+        "type": "debug",
+        "z": "597d1fcff3b6e84f",
+        "name": "Debug: Read Meter",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 680,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "e2a4e9561718f396",
+        "type": "debug",
+        "z": "597d1fcff3b6e84f",
+        "name": "Debug: Auth Token",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 950,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "d238a2fc96897e67",
+        "type": "credentials",
+        "z": "597d1fcff3b6e84f",
+        "name": "Credentials",
+        "props": [
+            {
+                "value": "username",
+                "type": "msg"
+            },
+            {
+                "value": "password",
+                "type": "msg"
+            },
+            {
+                "value": "esiid",
+                "type": "msg"
+            },
+            {
+                "value": "meternumber",
+                "type": "msg"
+            }
+        ],
+        "x": 270,
+        "y": 140,
+        "wires": [
+            [
+                "afbaf4994608d1d1",
+                "d0d3b01261442029",
+                "876b182afad07815"
+            ]
+        ]
+    },
+    {
+        "id": "ca166af012e6e594",
+        "type": "cronplus",
+        "z": "597d1fcff3b6e84f",
+        "name": "Read Meter",
+        "outputField": "payload",
+        "timeZone": "",
+        "storeName": "",
+        "commandResponseMsgOutput": "output1",
+        "defaultLocation": "",
+        "defaultLocationType": "default",
+        "outputs": 1,
+        "options": [
+            {
+                "name": "0 min past the hour",
+                "topic": "0 min past the hour",
+                "payloadType": "str",
+                "payload": "",
+                "expressionType": "cron",
+                "expression": "0  * * * * ",
+                "location": "",
+                "offset": "0",
+                "solarType": "all",
+                "solarEvents": "sunrise,sunset"
+            }
+        ],
+        "x": 110,
+        "y": 360,
+        "wires": [
+            [
+                "c70f916d692a88e6"
+            ]
+        ]
+    },
+    {
+        "id": "e1453dc93c9d6576",
+        "type": "cronplus",
+        "z": "597d1fcff3b6e84f",
+        "name": "Authenticate",
+        "outputField": "payload",
+        "timeZone": "",
+        "storeName": "",
+        "commandResponseMsgOutput": "output1",
+        "defaultLocation": "",
+        "defaultLocationType": "default",
+        "outputs": 1,
+        "options": [
+            {
+                "name": "56 min past the hour",
+                "topic": "56 min past the hour",
+                "payloadType": "str",
+                "payload": "",
+                "expressionType": "cron",
+                "expression": "0 56 * * * * ",
+                "location": "",
+                "offset": "0",
+                "solarType": "all",
+                "solarEvents": "sunrise,sunset"
+            }
+        ],
+        "x": 110,
+        "y": 260,
+        "wires": [
+            [
+                "e72f9d0f4ff41c6c"
+            ]
+        ]
+    },
+    {
+        "id": "0c4943b8b62ab5b6",
+        "type": "http request",
+        "z": "597d1fcff3b6e84f",
+        "name": "Log In",
+        "method": "POST",
+        "ret": "obj",
+        "paytoqs": "body",
+        "url": "https://www.smartmetertexas.com/commonapi/user/authenticate",
+        "tls": "",
+        "persist": true,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 450,
+        "y": 260,
+        "wires": [
+            [
+                "87164816306b4765",
+                "c43524ab8b651b8f"
+            ]
+        ]
+    },
+    {
+        "id": "d5590593db6be0a7",
+        "type": "http request",
+        "z": "597d1fcff3b6e84f",
+        "name": "Request Read",
+        "method": "POST",
+        "ret": "obj",
+        "paytoqs": "body",
+        "url": "https://www.smartmetertexas.com/api/ondemandread",
+        "tls": "",
+        "persist": true,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 480,
+        "y": 360,
+        "wires": [
+            [
+                "3237e5bde125a28d",
+                "dea77ece1f527941"
+            ]
+        ]
+    },
+    {
+        "id": "8b727a75d9e26e12",
+        "type": "http request",
+        "z": "597d1fcff3b6e84f",
+        "name": "Request Read",
+        "method": "POST",
+        "ret": "obj",
+        "paytoqs": "body",
+        "url": "https://www.smartmetertexas.com/api/usage/latestodrread",
+        "tls": "",
+        "persist": true,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 740,
+        "y": 460,
+        "wires": [
+            [
+                "6544d74bb811947f",
+                "a706bb6d540a8e26"
+            ]
+        ]
+    },
+    {
+        "id": "d01bdf9250a193a0",
+        "type": "mqtt out",
+        "z": "597d1fcff3b6e84f",
+        "name": "MQTT: Send Reading",
+        "topic": "smt/reading",
+        "qos": "",
+        "retain": "true",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "",
+        "x": 1400,
+        "y": 480,
+        "wires": []
+    }
+]
